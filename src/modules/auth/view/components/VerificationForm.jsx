@@ -1,237 +1,120 @@
-// VerificationForm.jsx — FE-2 presentational form
-// Step 1: Upload student ID  |  Step 2: Verify email OTP
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useRef, useState } from "react";
-import PrimaryButton from "../../../../common/components/ui/PrimaryButton";
-import InputField    from "../../../../common/components/ui/InputField";
+const VerificationForm = () => {
+  const navigate = useNavigate();
 
-// ── Icons ─────────────────────────────────────────────────
-const CheckIcon  = () => <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>;
-const UploadIcon = () => <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>;
-const MailIcon   = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>;
+  const documents = [
+    { name: 'Student ID Photo' },
+    { name: 'University Email' },
+    { name: 'Personal Information' }
+  ];
 
-// ── Step indicator ────────────────────────────────────────
-function StepIndicator({ current }) {
   return (
-    <div className="flex items-center mb-8">
-      {["Upload ID", "Verify Email"].map((label, i) => {
-        const idx    = i + 1;
-        const done   = idx < current;
-        const active = idx === current;
-        return (
-          <div key={label} className="flex items-center">
-            <div className="flex items-center gap-2">
-              <div className={[
-                "w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all",
-                done   ? "bg-[#3DBDA8] text-white" : "",
-                active ? "border-2 border-[#F07B3A] bg-[#F07B3A]/10 text-[#F07B3A]" : "",
-                !done && !active ? "border-2 border-[#E2E8F0] text-[#8A95A3]" : "",
-              ].filter(Boolean).join(" ")}>
-                {done ? <CheckIcon /> : idx}
-              </div>
-              <span className={`text-xs font-medium ${active ? "text-[#2D3748] font-semibold" : "text-[#8A95A3]"}`}>
-                {label}
-              </span>
+    <div className="min-h-screen bg-[#F7F7F5] flex flex-col relative">
+
+      {/* Navigation */}
+      <nav className="shrink-0 px-5 sm:px-8 h-16 flex items-center justify-between border-b border-black/7 bg-white/90 backdrop-blur-md z-20">
+        {/* Logo and Navigation Link */}
+        <span onClick={() => navigate('/')} className="flex items-center gap-2 cursor-pointer">
+          <div className="w-8 h-8 rounded-xl bg-[#F07B3A] flex items-center justify-center">
+            <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+          </div>
+          <span style={{fontFamily:'Syne', fontWeight:800}} className="text-[#111] text-lg">Sharezi</span>
+        </span>
+        {/* Step indicator */}
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
+            <div className="w-6 h-6 rounded-full bg-[#3DBDA8] flex items-center justify-center">
+              <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
             </div>
-            {i === 0 && (
-              <div className={`mx-3 w-12 h-0.5 ${done ? "bg-[#3DBDA8]" : "bg-[#E2E8F0]"}`} />
-            )}
+            <div className="w-8 h-0.5 bg-[#3DBDA8] rounded"></div>
+            <div className="w-6 h-6 rounded-full bg-[#3DBDA8] flex items-center justify-center">
+              <svg className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </div>
+            <div className="w-8 h-0.5 bg-black/10 rounded"></div>
+            <div className="w-6 h-6 rounded-full bg-black/8 border-2 border-[#F5B942] flex items-center justify-center">
+              <span className="text-[10px] font-bold text-[#F5B942]">3</span>
+            </div>
           </div>
-        );
-      })}
-    </div>
-  );
-}
-
-// ── Step 1: Upload ────────────────────────────────────────
-function UploadStep({ onUpload, loading, serverError, uploadProgress }) {
-  const inputRef                  = useRef(null);
-  const [file, setFile]           = useState(null);
-  const [preview, setPreview]     = useState(null);
-  const [dragOver, setDragOver]   = useState(false);
-  const [localError, setLocalError] = useState(null);
-
-  function handleFile(f) {
-    const allowed = ["image/jpeg","image/png","image/webp","application/pdf"];
-    if (!allowed.includes(f.type)) { setLocalError("JPG, PNG, WEBP or PDF only."); return; }
-    if (f.size > 5 * 1024 * 1024)  { setLocalError("File must be under 5MB."); return; }
-    setLocalError(null);
-    setFile(f);
-    if (f.type.startsWith("image/")) {
-      const r = new FileReader();
-      r.onload = e => setPreview(e.target.result);
-      r.readAsDataURL(f);
-    } else setPreview(null);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!file) { setLocalError("Please select your student ID file."); return; }
-    onUpload(file);
-  }
-
-  const err = serverError || localError;
-
-  return (
-    <form onSubmit={handleSubmit} noValidate>
-      <h2 className="font-display font-bold text-xl text-[#2D3748] mb-1">Upload Student ID</h2>
-      <p className="text-sm text-[#8A95A3] mb-5">Clear photo or scan — JPG, PNG, PDF up to 5MB</p>
-
-      {err && (
-        <div className="mb-4 px-3 py-2.5 rounded-lg bg-[#E53E3E]/10 border border-[#E53E3E]/20 text-[#E53E3E] text-sm">
-          {err}
+          <span className="text-xs text-[#111]/35 font-medium ml-1">Verification</span>
         </div>
-      )}
+      </nav>
 
-      {/* Dropzone */}
-      <div
-        onClick={() => !loading && inputRef.current?.click()}
-        onDragOver={e  => { e.preventDefault(); setDragOver(true); }}
-        onDragLeave={() => setDragOver(false)}
-        onDrop={e => {
-          e.preventDefault(); setDragOver(false);
-          if (e.dataTransfer.files?.[0]) handleFile(e.dataTransfer.files[0]);
-        }}
-        role="button" tabIndex={0}
-        onKeyDown={e => e.key === "Enter" && inputRef.current?.click()}
-        className={[
-          "relative min-h-40 rounded-xl border-2 border-dashed flex items-center justify-center cursor-pointer mb-4 transition-all overflow-hidden",
-          dragOver           ? "border-[#F07B3A] bg-[#F07B3A]/5"   : "",
-          file && !dragOver  ? "border-[#3DBDA8] bg-[#3DBDA8]/5 border-solid" : "",
-          !file && !dragOver ? "border-[#E2E8F0] bg-[#F4F6F8] hover:border-[#F07B3A] hover:bg-[#F07B3A]/5" : "",
-        ].filter(Boolean).join(" ")}
-      >
-        {preview ? (
-          <img src={preview} alt="ID preview" className="w-full h-44 object-contain p-3" />
-        ) : file ? (
-          <div className="flex flex-col items-center gap-2 text-[#3DBDA8] text-sm font-medium p-6">
-            <CheckIcon /> {file.name}
+      {/* Main Content */}
+      <div className="flex-1 flex items-center justify-center px-4 py-12 relative z-10">
+        <div className="w-full max-w-[420px]">
+
+          {/* Clock Icon */}
+          <div className="flex justify-center mb-7 u1">
+            <div className="clock-wrap w-20 h-20 rounded-full bg-[#FEF9EC] border-2 border-[#F5B942]/30 flex items-center justify-center">
+              <svg className="w-20 h-20 text-[#F5B942]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+              </svg>
+            </div>
           </div>
-        ) : (
-          <div className="flex flex-col items-center gap-2 p-6 text-center">
-            <span className="text-[#8A95A3]"><UploadIcon /></span>
-            <p className="text-sm font-medium text-[#2D3748]">Click to upload or drag and drop</p>
-            <p className="text-xs text-[#8A95A3]">JPG, PNG, WEBP, PDF up to 5MB</p>
+
+          {/* Heading */}
+          <div className="text-center mb-8 u2">
+            <h1 className="text-2xl sm:text-3xl text-[#111] mb-2">Verification in Progress</h1>
+            <p className="text-[#111]/45 text-sm">Your student verification is being processed</p>
           </div>
-        )}
-        <input ref={inputRef} type="file"
-          accept="image/jpeg,image/png,image/webp,application/pdf"
-          onChange={e => e.target.files?.[0] && handleFile(e.target.files[0])}
-          className="hidden" aria-hidden="true" />
+
+          {/* Documents Submitted Card */}
+          <div className="bg-white border border-black/7 rounded-2xl p-5 mb-4 u3">
+            <p className="font-bold text-sm text-[#111] mb-3">Documents Submitted</p>
+            {documents.map((doc, index) => (
+              <div key={index} className="check-item">
+                <div className="w-7 h-7 rounded-full bg-[#EAF9F7] border border-[#3DBDA8]/20 flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-[#3DBDA8]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <span className="text-sm text-[#111]/70">{doc.name}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* What's Next Card */}
+          <div className="bg-[#FFFBEC] border border-[#F5B942]/25 rounded-2xl p-5 mb-6 u4">
+            <div className="flex items-center gap-2 mb-3">
+              <svg className="w-5 h-5 text-[#F5B942]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+              </svg>
+              <p className="font-bold text-sm text-[#111]">What's Next?</p>
+            </div>
+            <p className="text-sm text-[#111]/55 leading-relaxed mb-2">Our team will review your documents within 24–48 hours. You'll receive an email once your account is verified.</p>
+            <p className="text-sm text-[#111]/55 leading-relaxed">You can browse the app with limited access until verification is complete.</p>
+          </div>
+
+          {/* Actions */}
+          <div className="flex flex-col gap-3 u5">
+            <button onClick={() => navigate('/student-home')} className="btn-teal">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              Browse App (Limited Access)
+            </button>
+            <button onClick={() => navigate('/')} className="btn-outline">
+              Return to Home
+            </button>
+          </div>
+
+          {/* Support Link */}
+          <p className="text-center text-sm text-[#111]/35 mt-6">
+            Need help? <a href="#" className="text-[#3DBDA8] font-semibold hover:underline">Contact Support</a>
+          </p>
+
+        </div>
       </div>
-
-      {/* File info + remove */}
-      {file && (
-        <div className="flex items-center gap-2 text-xs text-[#3DBDA8] font-medium mb-4">
-          <CheckIcon />
-          <span>{file.name} ({(file.size / 1024 / 1024).toFixed(1)} MB)</span>
-          <button type="button" onClick={e => { e.stopPropagation(); setFile(null); setPreview(null); }}
-            className="ml-auto text-[#E53E3E] hover:underline font-medium">Remove</button>
-        </div>
-      )}
-
-      {/* Upload progress */}
-      {uploadProgress > 0 && uploadProgress < 100 && (
-        <div className="h-1.5 bg-[#E2E8F0] rounded-full overflow-hidden mb-4">
-          <div className="h-full bg-gradient-to-r from-[#F5A54A] to-[#F07B3A] rounded-full transition-all duration-300"
-            style={{ width: `${uploadProgress}%` }} />
-        </div>
-      )}
-
-      <PrimaryButton type="submit" loading={loading} disabled={!file}>
-        Upload &amp; Continue
-      </PrimaryButton>
-    </form>
-  );
-}
-
-// ── Step 2: Email OTP ─────────────────────────────────────
-function EmailStep({ universityEmail, otp, onOtpChange, onSendOtp, onVerify, otpSent, loading, serverError, resendCooldown }) {
-  const [localError, setLocalError] = useState(null);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    if (!otp || otp.length !== 6) { setLocalError("Enter the 6-digit code."); return; }
-    setLocalError(null);
-    onVerify();
-  }
-
-  const err = serverError || localError;
-
-  return (
-    <form onSubmit={handleSubmit} noValidate>
-      <h2 className="font-display font-bold text-xl text-[#2D3748] mb-1">Verify University Email</h2>
-      <p className="text-sm text-[#8A95A3] mb-5">
-        We will send a code to{" "}
-        <strong className="text-[#F07B3A]">{universityEmail}</strong>
-      </p>
-
-      {err && (
-        <div className="mb-4 px-3 py-2.5 rounded-lg bg-[#E53E3E]/10 border border-[#E53E3E]/20 text-[#E53E3E] text-sm">
-          {err}
-        </div>
-      )}
-
-      {!otpSent ? (
-        <PrimaryButton type="button" loading={loading} onClick={onSendOtp} variant="teal">
-          Send Verification Code
-        </PrimaryButton>
-      ) : (
-        <>
-          {/* Sent confirmation */}
-          <div className="flex items-center gap-2 bg-[#3DBDA8]/10 border border-[#3DBDA8]/20 rounded-xl px-3 py-2.5 mb-4 text-sm text-[#3DBDA8] font-medium">
-            <CheckIcon />
-            <span>Code sent to <strong>{universityEmail}</strong></span>
-            <span className="text-[10px] ml-1">(use 123456)</span>
-          </div>
-
-          <InputField id="emailOtp" label="6-Digit Code"
-            type="text" inputMode="numeric"
-            value={otp}
-            onChange={e => { onOtpChange(e.target.value.replace(/\D/g,"").slice(0,6)); setLocalError(null); }}
-            placeholder="123456" icon={<MailIcon />} />
-
-          <div className="flex justify-end -mt-2 mb-4">
-            {resendCooldown > 0
-              ? <span className="text-xs text-[#8A95A3]">Resend in 0:{String(resendCooldown).padStart(2,"0")}</span>
-              : <button type="button" className="text-xs text-[#F07B3A] font-semibold hover:underline" onClick={onSendOtp}>Resend Code</button>
-            }
-          </div>
-
-          <PrimaryButton type="submit" loading={loading} disabled={otp.length < 6} variant="teal">
-            Verify &amp; Submit
-          </PrimaryButton>
-        </>
-      )}
-    </form>
-  );
-}
-
-// ── Main export ───────────────────────────────────────────
-export default function VerificationForm({
-  step, universityEmail, otp, onOtpChange,
-  onUpload, onSendOtp, onVerify,
-  otpSent, loading, serverError,
-  uploadProgress, resendCooldown,
-}) {
-  return (
-    <div>
-      <StepIndicator current={step === "upload" ? 1 : 2} />
-      {step === "upload" && (
-        <UploadStep
-          onUpload={onUpload} loading={loading}
-          serverError={serverError} uploadProgress={uploadProgress}
-        />
-      )}
-      {step === "email" && (
-        <EmailStep
-          universityEmail={universityEmail} otp={otp}
-          onOtpChange={onOtpChange} onSendOtp={onSendOtp}
-          onVerify={onVerify} otpSent={otpSent}
-          loading={loading} serverError={serverError}
-          resendCooldown={resendCooldown}
-        />
-      )}
     </div>
   );
-}
+};
+
+export default VerificationForm;

@@ -1,46 +1,52 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
-
-// Guards
-import PublicRoute  from "../common/guards/PublicRoute";
-import PrivateRoute from "../common/guards/PrivateRoute";
-
-// Layouts
-import AuthLayout from "../common/components/layout/AuthLayout";
-import AppLayout  from "../common/components/layout/AppLayout";
-
-// Module routes
-import { authRoutes }      from "../modules/auth/routes";
-import { dashboardRoutes } from "../modules/dashboard/routes";
-import { rideRoutes }      from "../modules/ride/routes";
-import { foodRoutes }      from "../modules/food/routes";
+import RoleSelectPage from "../modules/auth/view/pages/RoleSelectPage";
+import LoginPage from "../modules/auth/view/pages/LoginPage";
+import SignupPage from "../modules/auth/view/pages/SignupPage";
+import Landing from '../pages/Landing/Landing';
+import VerificationForm from "../modules/auth/view/components/VerificationForm";
+import Home from '../bannerPage/Home';
+import FindRide from '../pages/findRide/findRide';
+import RideDetails from '../pages/rideDetails/rideDetails';
 
 const router = createBrowserRouter([
   {
-    element: <PublicRoute/>,
-     children: [
-      {
-        element: <AuthLayout><Outlet /></AuthLayout>,
-        children: authRoutes.filter(r =>
-          ["/", "/login", "/signup/:role", "/verify", "/verify-status"].includes(r.path)
-        ),
-      },
-    ],
-  },
-  {
-
-    element: <PrivateRoute role="student" />,
+    path: "",
+    element: (
+      <div>
+        <Outlet /></div>
+    ),
     children: [
       {
-        element: <AppLayout />,
-        children: [
-          ...dashboardRoutes.filter(r => r.path === "/student-home"),
-          ...rideRoutes.filter(r => !["/offer-ride", "/my-offers"].includes(r.path)),
-          ...foodRoutes,
-        ],
+        path: "/",
+        element: <Landing />,
       },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "signup",
+        element: <SignupPage />,
+      },
+      {
+        path: "verify",
+        element: <VerificationForm />,
+      },
+      {
+        path: "student-home",
+        element: <Home />,
+      },
+      {
+        path: "find-ride",
+        element: <FindRide />,
+      },
+      {
+        path: "ride-details/:id",
+        element: <RideDetails />,
+      },
+      
     ],
   },
-
   {
     path: "*",
     element: (

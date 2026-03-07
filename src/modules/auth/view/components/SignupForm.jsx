@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SignupFormStep from './SignupFormStep';
+import RoleSelectStep from './RoleSelectStep';
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState(2); // 1: role select, 2: form
+  const [step, setStep] = useState(1); // 1: role select, 2: form
   const [selectedRole, setSelectedRole] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
@@ -21,9 +22,9 @@ const SignupForm = () => {
   const fileInputRef = useRef();
 
   const roleConfig = {
-    student: { label: 'Student', icon: 'school', bg: '#3DBDA8', btnClass: 'teal', hint: 'Find rides, split food costs, and save money with campus mates.' },
-    driver: { label: 'Driver', icon: 'directions_car', bg: '#F07B3A', btnClass: 'orange', hint: 'Offer rides, cover petrol costs, earn with your campus community.' },
-    admin: { label: 'Admin', icon: 'admin_panel_settings', bg: '#8B5CF6', btnClass: 'purple', hint: 'Manage users, verify IDs, and oversee platform operations.' },
+    student: { label: 'Student', icon: 'school', bg: '#3dbda8', rgb: '61,189,168', btnClass: 'teal', hint: 'Find rides, split food costs, and save money with campus mates.' },
+    driver: { label: 'Driver', icon: 'directions_car', bg: '#f07b3a', rgb: '240,123,58', btnClass: 'orange', hint: 'Offer rides, cover petrol costs, earn with your campus community.' },
+    admin: { label: 'Admin', icon: 'admin_panel_settings', bg: '#8b5cf6', rgb: '139,92,246', btnClass: 'purple', hint: 'Manage users, verify IDs, and oversee platform operations.' },
   };
 
   const selectRole = (role) => {

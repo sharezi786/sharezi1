@@ -10,7 +10,7 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
   const [dragOver, setDragOver] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
 
-  const getPasswordStrength = (password) => {
+  const getPasswordStrength = (password = "") => {
     let strength = 0;
     if (password.length >= 8) strength++;
     if (/[A-Z]/.test(password)) strength++;
@@ -20,7 +20,7 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
     return strength;
   };
 
-  const strength = getPasswordStrength(formData.password);
+  const strength = getPasswordStrength(formData?.password);
   const strengthLabels = ['', 'Weak', 'Fair', 'Good', 'Strong'];
   const strengthColors = ['', 'bg-red-500', 'bg-yellow-500', 'bg-blue-500', 'bg-green-500'];
 
@@ -47,11 +47,11 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
   };
 
   return (
-    <div id="step-form" className="opacity-1 transform translate-x-0 transition-opacity duration-300 ease-out transition-transform duration-300 ease-out">
+    <div id="signup-form-step" className="opacity-100 transform translate-x-0 transition-opacity duration-300 ease-out transition-transform duration-300 ease-out">
 
       {/* Back + role badge */}
       <div className="flex items-center gap-3 mb-6">
-        <button className="w-9 h-9 rounded-xl bg-white border border-black/10 flex items-center justify-center hover:bg-[#F7F7F5] transition-colors">
+        <button onClick={onBack} className="w-9 h-9 rounded-xl bg-white border border-black/10 flex items-center justify-center hover:bg-[#F7F7F5] transition-colors">
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
           </svg>
@@ -83,12 +83,12 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
 
           {/* Name */}
           <div>
-            <label className="lbl">Full name</label>
+            <label className="lbl text-black">Full name</label>
             <div className="inp-wrap">
               <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#111]/60" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
               </svg>
-              <input className={`inp ${errors.name ? 'err' : ''}`} name="name" type="text" placeholder="Aryan Kapoor" value={formData.name} onChange={handleInputChange} autoComplete="name"/>
+              <input className={`inp ${errors?.name ? 'err' : ''}`} name="name" type="text" placeholder="Aryan Kapoor" value={formData.name} onChange={handleInputChange} autoComplete="name"/>
             </div>
             <div className="ferr" style={{ display: errors.name ? 'flex' : 'none' }}>
               <svg className="w-4 h-4 text-[#EF4444]" viewBox="0 0 24 24" fill="currentColor">
@@ -105,13 +105,13 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
               <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#111]/60" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
               </svg>
-              <input className={`inp ${errors.email ? 'err' : ''}`} name="email" type="email" placeholder="you@university.edu" value={formData.email} onChange={handleInputChange} autoComplete="email"/>
+              <input className={`inp ${errors?.email ? 'err' : ''}`} name="email" type="email" placeholder="you@university.edu" value={formData.email} onChange={handleInputChange} autoComplete="email"/>
             </div>
-            <div className="ferr" style={{ display: errors.email ? 'flex' : 'none' }}>
+            <div className="ferr" style={{ display: errors?.email ? 'flex' : 'none' }}>
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
               </svg>
-              <span>{errors.email}</span>
+              <span>{errors?.email}</span>
             </div>
           </div>
 
@@ -123,13 +123,13 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
                 <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
               </svg>
               <span className="pfx">+91</span>
-              <input className={`inp pr ${errors.phone ? 'err' : ''}`} name="phone" type="tel" placeholder="98765 43210" maxLength="10" value={formData.phone} onChange={handleInputChange} inputMode="numeric"/>
+              <input className={`inp pr ${errors?.phone ? 'err' : ''}`} name="phone" type="tel" placeholder="98765 43210" maxLength="10" value={formData.phone} onChange={handleInputChange} inputMode="numeric"/>
             </div>
-            <div className="ferr" style={{ display: errors.phone ? 'flex' : 'none' }}>
+            <div className="ferr" style={{ display: errors?.phone ? 'flex' : 'none' }}>
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
               </svg>
-              <span>{errors.phone}</span>
+              <span>{errors?.phone}</span>
             </div>
           </div>
 
@@ -140,13 +140,13 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
               <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#111]/60" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
               </svg>
-              <input className={`inp ${errors.college ? 'err' : ''}`} name="college" type="text" placeholder="IIT Bombay" value={formData.college} onChange={handleInputChange} autoComplete="organization"/>
+              <input className={`inp ${errors?.college ? 'err' : ''}`} name="college" type="text" placeholder="IIT Bombay" value={formData.college} onChange={handleInputChange} autoComplete="organization"/>
             </div>
-            <div className="ferr" style={{ display: errors.college ? 'flex' : 'none' }}>
+            <div className="ferr" style={{ display: errors?.college ? 'flex' : 'none' }}>
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
               </svg>
-              <span>{errors.college}</span>
+              <span>{errors?.college}</span>
             </div>
           </div>
 
@@ -157,7 +157,7 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
               <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#111]/60" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               </svg>
-              <input className={`inp ${errors.sid ? 'err' : ''}`} name="sid" type="text" placeholder="21B030012" value={formData.sid} onChange={handleInputChange} autoComplete="off"/>
+              <input className={`inp ${errors.sid ? 'err' : ''}`} name="sid" type="text" placeholder="21B030012" value={formData?.sid} onChange={handleInputChange} autoComplete="off"/>
             </div>
             <div className="ferr" style={{ display: errors.sid ? 'flex' : 'none' }}>
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -276,9 +276,8 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
           {/* Submit */}
           <button
             type="submit"
-            className={`w-full h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-white transition-all ${
-              selectedRole ? `bg-[#${roleConfig[selectedRole].bg}] hover:bg-[#${roleConfig[selectedRole].bg}CC] shadow-[0_4px_16px_rgba(${roleConfig[selectedRole].bg},.28)] hover:shadow-[0_8px_24px_rgba(${roleConfig[selectedRole].bg},.38)] hover:-translate-y-0.5` : 'bg-[#E2E8F0] text-[#94A3B8] cursor-not-allowed'
-            }`}
+            className={`w-full h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-white transition-all hover:-translate-y-0.5`}
+            style={{ backgroundColor: selectedRole ? roleConfig[selectedRole].bg : '#E2E8F0' }}
             disabled={loading}
           >
             {loading ? (

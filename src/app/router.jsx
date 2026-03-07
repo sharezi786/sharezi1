@@ -1,5 +1,4 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import RoleSelectPage from "../modules/auth/view/pages/RoleSelectPage";
 import LoginPage from "../modules/auth/view/pages/LoginPage";
 import SignupPage from "../modules/auth/view/pages/SignupPage";
 import Landing from '../pages/Landing/Landing';

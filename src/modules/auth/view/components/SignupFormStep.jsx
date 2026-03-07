@@ -51,7 +51,7 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
 
       {/* Back + role badge */}
       <div className="flex items-center gap-3 mb-6">
-        <button className="w-9 h-9 rounded-xl bg-white border border-black/10 flex items-center justify-center hover:bg-[#F7F7F5] transition-colors">
+        <button onClick={onBack} className="w-9 h-9 rounded-xl bg-white border border-black/10 flex items-center justify-center hover:bg-[#F7F7F5] transition-colors">
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
           </svg>
@@ -276,9 +276,8 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
           {/* Submit */}
           <button
             type="submit"
-            className={`w-full h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-white transition-all ${
-              selectedRole ? `bg-[#${roleConfig[selectedRole].bg}] hover:bg-[#${roleConfig[selectedRole].bg}CC] shadow-[0_4px_16px_rgba(${roleConfig[selectedRole].bg},.28)] hover:shadow-[0_8px_24px_rgba(${roleConfig[selectedRole].bg},.38)] hover:-translate-y-0.5` : 'bg-[#E2E8F0] text-[#94A3B8] cursor-not-allowed'
-            }`}
+            className={`w-full h-12 rounded-xl font-bold text-sm flex items-center justify-center gap-2 text-white transition-all hover:-translate-y-0.5`}
+            style={{ backgroundColor: selectedRole ? roleConfig[selectedRole].bg : '#E2E8F0' }}
             disabled={loading}
           >
             {loading ? (

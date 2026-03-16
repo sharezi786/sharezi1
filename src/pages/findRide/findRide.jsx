@@ -10,6 +10,7 @@ const FindRide = () => {
   const [radius, setRadius] = useState(2);
   const [from, setFrom] = useState("IITB Gate 1");
   const [to, setTo] = useState("");
+  const [selectedTime, setSelectedTime] = useState("any");
 
   const rides = [
     {
@@ -103,8 +104,6 @@ const FindRide = () => {
   };
 
   const toggleChip = (chip) => {
-    // Toggle chip active state, but for simplicity, just change class
-    // In real app, manage state
   };
 
   const openFilters = () => {
@@ -315,11 +314,14 @@ const FindRide = () => {
       {/* Map View */}
       {view === 'map' && (
         <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1 bg-blue-100 m-3 rounded-2xl relative overflow-hidden">
-            {/* Map placeholder with pins */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <p className="text-black/50 text-sm">Map View</p>
-            </div>
+          <div className="flex-1 m-3 rounded-2xl relative overflow-hidden">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=72.8,19.0,73.0,19.3&layer=mapnik"
+              width="100%"
+              height="100%"
+              style={{ border: 'none', borderRadius: '16px' }}
+              title="Map View"
+            ></iframe>
             {/* Mini card strip */}
             <div className="flex gap-3 overflow-x-auto px-3 pb-3 absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm">
               {rides.slice(0, 3).map((ride) => (
@@ -342,8 +344,8 @@ const FindRide = () => {
       {/* Filter Drawer */}
       {drawerOpen && (
         <>
-          <div className="fixed inset-0 bg-black/40 z-40" onClick={closeFilters}></div>
-          <div className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl px-5 pt-5 pb-8 z-50 transition-transform duration-300 ${drawerOpen ? 'translate-y-0' : 'translate-y-full'}`}>
+          <div className="fixed inset-0 bg-black/40 z-[60]" onClick={closeFilters}></div>
+          <div className={`fixed bottom-0 left-0 right-0 bg-white rounded-t-3xl shadow-2xl px-5 pt-5 pb-8 z-[70] transition-transform duration-300 ${drawerOpen ? 'translate-y-0' : 'translate-y-full'}`}>
             <div className="w-10 h-1 bg-black/10 rounded-full mx-auto mb-5"></div>
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-lg font-bold text-black">Filters</h3>
@@ -373,28 +375,28 @@ const FindRide = () => {
               <div>
                 <p className="text-sm font-semibold text-black mb-2">Time window</p>
                 <div className="flex gap-2 flex-wrap">
-                  <button className="h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 bg-black text-white border-black">
+                  <button onClick={() => setSelectedTime('any')} className={`h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 ${selectedTime === 'any' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-gray-400'}`}>
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
                       <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                     </svg>
                     Any time
                   </button>
-                  <button className="h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 border-gray-300 bg-white text-black hover:border-gray-400">
+                  <button onClick={() => setSelectedTime('1hr')} className={`h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 ${selectedTime === '1hr' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-gray-400'}`}>
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
                       <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                     </svg>
                     Next 1 hr
                   </button>
-                  <button className="h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 border-gray-300 bg-white text-black hover:border-gray-400">
+                  <button onClick={() => setSelectedTime('3hrs')} className={`h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 ${selectedTime === '3hrs' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-gray-400'}`}>
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
                       <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                     </svg>
                     Next 3 hrs
                   </button>
-                  <button className="h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 border-gray-300 bg-white text-black hover:border-gray-400">
+                  <button onClick={() => setSelectedTime('today')} className={`h-8 px-3 rounded-full text-xs font-semibold flex items-center gap-1 cursor-pointer transition-all whitespace-nowrap border-2 ${selectedTime === 'today' ? 'bg-black text-white border-black' : 'bg-white text-black border-gray-300 hover:border-gray-400'}`}>
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
                       <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>

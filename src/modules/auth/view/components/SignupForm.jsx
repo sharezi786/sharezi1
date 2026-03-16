@@ -77,7 +77,7 @@ const SignupForm = () => {
   return (
     <div className="min-h-screen bg-[#F7F7F5] flex flex-col">
       {/* Nav */}
-      <nav className="shrink-0 px-5 sm:px-8 h-16 flex items-center justify-between border-b border-black/7 bg-white/90 backdrop-blur-md z-20">
+      <nav className="shrink-0 px-5 sm:px-8 h-16 flex items-center justify-between border-b border-black/7 bg-white/90 backdrop-blur-md z-20 sticky top-0">
         <span onClick={() => navigate('/')} className="flex items-center gap-2 cursor-pointer">
           <div className="w-8 h-8 rounded-xl bg-[#F07B3A] flex items-center justify-center">
             <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">

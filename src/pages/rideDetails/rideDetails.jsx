@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import BottomNav from "../../components/bannerComponents/layout/BottomNav";
 
 const RideDetails = () => {
   const { id } = useParams();
@@ -9,6 +8,7 @@ const RideDetails = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [confirming, setConfirming] = useState(false);
+  const [message, setMessage] = useState('');
 
   // Mock ride data
   const ride = {
@@ -54,7 +54,7 @@ const RideDetails = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-[#F7F7F5] relative">
+    <div className="flex flex-col h-screen bg-[#F7F7F5] relative font-sans">
       {/* Top Nav */}
       <nav className="shrink-0 px-4 h-14 flex items-center gap-3 bg-white/90 backdrop-filter backdrop-blur-md border-b border-black/7 z-20 relative">
         <button onClick={() => navigate(-1)} className="w-9 h-9 rounded-xl bg-black/5 flex items-center justify-center hover:bg-black/10 transition-colors shrink-0">
@@ -64,9 +64,7 @@ const RideDetails = () => {
         </button>
         <h1 className="text-base font-bold text-[#111] flex-1">Ride Details</h1>
         <button onClick={shareRide} className="w-9 h-9 rounded-xl bg-black/5 flex items-center justify-center hover:bg-black/10 transition-colors">
-          <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-          </svg>
+          <span className="icon">share</span>
         </button>
       </nav>
 
@@ -155,9 +153,7 @@ const RideDetails = () => {
             {/* Vehicle info */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#F7F7F5] flex items-center justify-center shrink-0">
-                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 9.3V4h-3v2.6L12 3 2 12h3v8h6v-6h2v6h6v-8h3l-3-2.7zM17 18h-2v-6h-2v6h-2v-6H9v6H7v-8h2v2.6l2-1.8 2 1.8V10h2v8z"/>
-                </svg>
+                <span className="icon">pedal_bike</span>
               </div>
               <div>
                 <p className="text-sm font-semibold text-[#111]">{ride.vehicle.split(' · ')[0]}</p>
@@ -254,9 +250,7 @@ const RideDetails = () => {
             <div className="flex flex-col gap-2.5">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-[#EAF9F7] flex items-center justify-center shrink-0">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                  </svg>
+                  <span className="icon">verified</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#111]">ID Verified Driver</p>
@@ -265,9 +259,7 @@ const RideDetails = () => {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-[#EAF9F7] flex items-center justify-center shrink-0">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-                  </svg>
+                  <span className="icon">location_on</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#111]">Live ride tracking</p>
@@ -276,9 +268,7 @@ const RideDetails = () => {
               </div>
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl bg-[#FEF2F2] flex items-center justify-center shrink-0">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                  </svg>
+                  <span className="icon">sos</span>
                 </div>
                 <div>
                   <p className="text-xs font-semibold text-[#111]">SOS button</p>
@@ -294,27 +284,20 @@ const RideDetails = () => {
       {/* Bottom Action Bar */}
       <div className="shrink-0 px-4 py-3 bg-white/97 backdrop-blur border-t border-black/8 z-20 relative">
         <div className="max-w-xl mx-auto flex gap-3">
-          <button onClick={openMessage} className="w-12 h-12 shrink-0 rounded-2xl bg-white border border-black/10 flex items-center justify-center border border-black/10">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-              <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10c.55 0 1 .45 1 1s-.45 1-1 1H7c-.55 0-1-.45-1-1s.45-1 1-1zm0 3h7c.55 0 1 .45 1 1s-.45 1-1 1H7c-.55 0-1-.45-1-1s.45-1 1-1z"/>
-            </svg>
+          <button onClick={openMessage} className="w-12 h-12 shrink-0 rounded-2xl bg-white border border-black/10 flex items-center justify-center">
+            <span className="icon">chat</span>
           </button>
           <button onClick={openConfirm} className="flex-1 bg-[#F07B3A] text-white font-bold text-sm h-12 rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(240,123,58,.28)] hover:shadow-[0_8px_24px_rgba(240,123,58,.38)] hover:-translate-y-0.5 transition-all">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
-            </svg>
+            <span className="icon">event_note</span>
             Request Seat — ₹{ride.total}
           </button>
           <button onClick={shareRide} className="w-12 h-12 shrink-0 rounded-2xl bg-white border border-black/10 flex items-center justify-center">
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
-            </svg>
+            <span className="icon">share</span>
           </button>
         </div>
       </div>
 
-      <BottomNav />
-
+      <>
       {/* Confirm Modal */}
       {showConfirm && (
         <div className="fixed inset-0 z-60 flex items-end justify-center">
@@ -392,18 +375,16 @@ const RideDetails = () => {
                 <p className="text-xs text-[#111]/40">Usually replies in minutes</p>
               </div>
               <button onClick={closeMessage} className="ml-auto w-8 h-8 rounded-xl bg-black/5 flex items-center justify-center">
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                </svg>
+                <span className="icon">close</span>
               </button>
             </div>
             <div className="flex gap-2 overflow-x-auto mb-3 pb-1 scrollbar-hide">
-              <button className="text-xs bg-[#F7F7F5] border border-black/8 rounded-full px-3 py-1.5 whitespace-nowrap font-medium hover:bg-[#EAF9F7] transition-colors">Are you still on time?</button>
-              <button className="text-xs bg-[#F7F7F5] border border-black/8 rounded-full px-3 py-1.5 whitespace-nowrap font-medium hover:bg-[#EAF9F7] transition-colors">I'm at the pickup point</button>
-              <button className="text-xs bg-[#F7F7F5] border border-black/8 rounded-full px-3 py-1.5 whitespace-nowrap font-medium hover:bg-[#EAF9F7] transition-colors">Can you wait 2 min?</button>
+              <button onClick={() => setMessage("Are you still on time?")} className="text-xs bg-[#F7F7F5] border border-black/8 rounded-full px-3 py-1.5 whitespace-nowrap font-medium hover:bg-[#EAF9F7] transition-colors">Are you still on time?</button>
+              <button onClick={() => setMessage("I'm at the pickup point")} className="text-xs bg-[#F7F7F5] border border-black/8 rounded-full px-3 py-1.5 whitespace-nowrap font-medium hover:bg-[#EAF9F7] transition-colors">I'm at the pickup point</button>
+              <button onClick={() => setMessage("Can you wait 2 min?")} className="text-xs bg-[#F7F7F5] border border-black/8 rounded-full px-3 py-1.5 whitespace-nowrap font-medium hover:bg-[#EAF9F7] transition-colors">Can you wait 2 min?</button>
             </div>
             <div className="flex gap-2">
-              <input type="text" placeholder="Type a message..." className="flex-1 h-11 border border-black/1 rounded-xl bg-[#F7F7F5] px-3 text-sm outline-none" />
+              <input value={message} onChange={(e) => setMessage(e.target.value)} type="text" placeholder="Type a message..." className="flex-1 h-11 border border-black/1 rounded-xl bg-[#F7F7F5] px-3 text-sm outline-none" />
               <button className="w-11 h-11 rounded-xl bg-[#3DBDA8] flex items-center justify-center shrink-0">
                 <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
@@ -423,6 +404,8 @@ const RideDetails = () => {
           Link copied to clipboard!
         </div>
       )}
+      </>
+
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const CTA = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-20 px-4 sm:px-6 bg-white section-divider">
       <div className="max-w-3xl mx-auto">
@@ -12,7 +14,7 @@ const CTA = () => {
             Ready to join your<br/><span className="text-[#F07B3A]">campus community?</span>
           </h2>
           <p className="text-white/70 text-sm leading-relaxed mb-8 max-w-md mx-auto">Download the app and start connecting with verified students for rides and food sharing.</p>
-          <button className="btn-glow text-sm font-bold px-8 py-4 rounded-xl">Get Started</button>
+          <button className="btn-glow text-sm font-bold px-8 py-4 rounded-xl" onClick={() => navigate('/signup')}>Get Started</button>
         </div>
       </div>
     </section>

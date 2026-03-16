@@ -1,0 +1,361 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box
+}
+
+body {
+    font-family: 'DM Sans', 'Roboto', sans-serif;
+    background: #F7F7F5;
+    color: #111;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* overflow: hidden; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+}
+
+.icon,
+
+.icon-o {
+    font-family: 'Material Symbols Rounded', 'Roboto';
+    font-style: normal;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+.icon {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.icon-o {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+}
+
+.top-nav {
+    background: rgba(247, 247, 245, .95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 0, 0, .07);
+}
+
+.bottom-nav {
+    background: rgba(255, 255, 255, .96);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(0, 0, 0, .07);
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 4px;
+    cursor: pointer;
+}
+
+.nav-item .nav-label {
+    font-size: 10px;
+    font-weight: 600;
+    opacity: .3;
+}
+
+.nav-item.active .nav-label {
+    color: #F07B3A;
+    opacity: 1;
+}
+
+.nav-item.active .nav-icon {
+    color: #F07B3A !important;
+    opacity: 1 !important;
+}
+
+.nav-item:not(.active) .nav-icon {
+    opacity: .3;
+}
+
+#scroll-area {
+    flex: 1;
+    overflow-y: auto;
+}
+
+#scroll-area::-webkit-scrollbar {
+    width: 3px;
+}
+
+#scroll-area::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, .1);
+    border-radius: 99px;
+}
+
+/* ── Tabs ── */
+.seg-tab {
+    flex: 1;
+    height: 36px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all .18s ease;
+    cursor: pointer;
+}
+
+.seg-tab.active {
+    background: #fff;
+    color: #111;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, .09);
+}
+
+.seg-tab:not(.active) {
+    color: #111;
+    opacity: .4;
+}
+
+/* ── Offer card ── */
+.offer-card {
+    background: #fff;
+    border: 1.5px solid rgba(0, 0, 0, .07);
+    border-radius: 18px;
+    padding: 16px;
+    transition: all .2s cubic-bezier(.22, 1, .36, 1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+}
+
+.offer-card:hover {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .08);
+}
+
+/* ── Status pills ── */
+.pill {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.pill-active {
+    background: #EAF9F7;
+    color: #2A9E8C;
+}
+
+.pill-draft {
+    background: #F3F4F6;
+    color: #6B7280;
+}
+
+.pill-full {
+    background: #FFF3EC;
+    color: #E8662A;
+}
+
+.pill-past {
+    background: #F0FDF4;
+    color: #15803D;
+}
+
+.pill-cancelled {
+    background: #FEF2F2;
+    color: #B91C1C;
+}
+
+/* ── Rider avatar row ── */
+.rider-stack {
+    display: flex;
+}
+
+.rider-av {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    margin-left: -6px;
+}
+
+.rider-av:first-child {
+    margin-left: 0;
+}
+
+/* ── Action btns ── */
+.btn-sm {
+    height: 34px;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all .15s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-edit {
+    background: #F7F7F5;
+    color: #111;
+    border: 1px solid rgba(0, 0, 0, .1);
+}
+
+.btn-edit:hover {
+    background: #EEE;
+}
+
+.btn-cancel {
+    background: #FEF2F2;
+    color: #EF4444;
+    border: 1px solid rgba(239, 68, 68, .15);
+}
+
+.btn-cancel:hover {
+    background: #FECACA;
+}
+
+.btn-orange {
+    background: #F07B3A;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(240, 123, 58, .25);
+}
+
+.btn-orange:hover {
+    background: #E8662A;
+}
+
+/* ── Stats bar ── */
+.stat-card {
+    background: #fff;
+    border: 1.5px solid rgba(0, 0, 0, .07);
+    border-radius: 16px;
+    padding: 14px;
+    flex: 1;
+    text-align: center;
+}
+
+/* ── Drawer ── */
+#drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transform: translateY(100%);
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 24px 24px 0 0;
+    padding: 20px 20px 36px;
+    box-shadow: 0 -4px 32px rgba(0, 0, 0, .12);
+}
+
+#drawer.open {
+    transform: translateY(0);
+}
+
+#d-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(0, 0, 0, .4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s;
+}
+
+#d-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+@keyframes up {
+    from {
+        opacity: 0;
+        transform: translateY(12px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.u1 {
+    animation: up .4s .04s cubic-bezier(.22, 1, .36, 1) both
+}
+
+.u2 {
+    animation: up .4s .09s cubic-bezier(.22, 1, .36, 1) both
+}
+
+.u3 {
+    animation: up .4s .14s cubic-bezier(.22, 1, .36, 1) both
+}
+
+.u4 {
+    animation: up .4s .19s cubic-bezier(.22, 1, .36, 1) both
+}
+
+.u5 {
+    animation: up .4s .24s cubic-bezier(.22, 1, .36, 1) both
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: .4
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg)
+    }
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .3);
+    border-top-color: #fff;
+    animation: spin .7s linear infinite;
+    display: inline-block;
+}

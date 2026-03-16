@@ -6,6 +6,8 @@ import VerificationForm from "../modules/auth/view/components/VerificationForm";
 import Home from '../bannerPage/Home';
 import FindRide from '../pages/findRide/findRide';
 import RideDetails from '../pages/rideDetails/rideDetails';
+import OfferRide from '../pages/offerRide/offerRide';
+import MyOffer from '../pages/myofferComponents/MyOffer';
 
 const router = createBrowserRouter([
   {
@@ -43,7 +45,14 @@ const router = createBrowserRouter([
         path: "ride-details/:id",
         element: <RideDetails />,
       },
-      
+      {
+        path: "offer-ride",
+        element: <OfferRide />,
+      },
+      {
+        path: "my-offers",
+        element: <MyOffer />,
+      },
     ],
   },
   {

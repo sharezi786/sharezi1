@@ -37,9 +37,16 @@ const MyOffer = () => {
         {name:'Arjun T.', col:'#F59E0B', status:'Completed', paid:true},
       ], '₹55', false);
     } else if (key === 'cancelled') {
-      content = '<p class="text-center text-[#111]/40 py-8 text-sm">This ride was cancelled by you.</p>';
+      content = <p className="text-center text-[#111]/40 py-8 text-sm">This ride was cancelled by you.</p>;
     } else if (key === 'edit') {
-      content = '<p class="text-sm font-semibold text-[#111] mb-4">Edit ride redirects to offer form</p><button onClick={() => {setDrawerOpen(false); navigate("/offer-ride");}} class="block w-full h-11 rounded-2xl bg-[#F07B3A] text-white font-bold text-sm flex items-center justify-center gap-2"><span class="icon" style="font-size:17px;">edit</span>Edit in Offer Form</button>';
+      content = (
+        <>
+          <p className="text-sm font-semibold text-[#111] mb-4">Edit ride redirects to offer form</p>
+          <button onClick={() => {setDrawerOpen(false); navigate('/offer-ride');}} className="block w-full h-11 rounded-2xl bg-[#F07B3A] text-white font-bold text-sm flex items-center justify-center gap-2">
+            <span className="icon" style={{fontSize:'17px'}}>edit</span>Edit in Offer Form
+          </button>
+        </>
+      );
     }
     setDrawerContent(content);
     setDrawerOpen(true);
@@ -47,44 +54,49 @@ const MyOffer = () => {
 
   const riderListHTML = (route, time, riders, price, showActions) => {
     const riderRows = riders.length === 0
-      ? '<div class="text-center py-6"><span class="icon-o" style="font-size:32px;opacity:.2;">group</span><p class="text-xs text-[#111]/30 mt-2">No riders yet</p></div>'
-      : riders.map(r => `
-        <div class="flex items-center gap-3 py-3 border-b border-black/6 last:border-0">
-          <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style="background:${r.col};">${r.name[0]}</div>
-          <div class="flex-1 min-w-0">
-            <p class="text-sm font-semibold text-[#111]">${r.name}</p>
-            <span class="text-[10px] font-bold ${r.status==='Completed'?'text-[#15803D]':'text-[#2A9E8C]'}">${r.status}</span>
+      ? <div className="text-center py-6"><span className="icon-o" style={{fontSize:'32px',opacity:.2}}>group</span><p className="text-xs text-[#111]/30 mt-2">No riders yet</p></div>
+      : riders.map(r => (
+        <div key={r.name} className="flex items-center gap-3 py-3 border-b border-black/6 last:border-0">
+          <div className="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0" style={{background:r.col}}>{r.name[0]}</div>
+          <div className="flex-1 min-w-0">
+            <p className="text-sm font-semibold text-[#111]">{r.name}</p>
+            <span className="text-[10px] font-bold" style={{color:r.status==='Completed'?'#15803D':'#2A9E8C'}}>{r.status}</span>
           </div>
-          <div class="text-right">
-            <p class="text-xs font-bold text-[#111]">${price}</p>
-            <p class="text-[10px] ${r.paid?'text-[#3DBDA8]':'text-[#F07B3A]'} font-semibold">${r.paid?'Paid':'Cash'}</p>
+          <div className="text-right">
+            <p className="text-xs font-bold text-[#111]">{price}</p>
+            <p className="text-[10px]" style={{color:r.paid?'#3DBDA8':'#F07B3A', fontWeight:'bold'}}>{r.paid?'Paid':'Cash'}</p>
           </div>
-        </div>`).join('');
+        </div>
+      ));
 
-    return `
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-base text-[#111]">Ride Details</h3>
-        <button onClick={() => setDrawerOpen(false)} class="w-8 h-8 rounded-xl bg-black/5 flex items-center justify-center"><span class="icon-o" style="font-size:18px;">close</span></button>
+    return (
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-base text-[#111]">Ride Details</h3>
+          <button onClick={() => setDrawerOpen(false)} className="w-8 h-8 rounded-xl bg-black/5 flex items-center justify-center"><span className="icon-o" style={{fontSize:'18px'}}>close</span></button>
+        </div>
+        <div className="bg-[#F7F7F5] rounded-2xl p-4 mb-4">
+          <p className="font-bold text-sm text-[#111] mb-0.5">{route}</p>
+          <p className="text-xs text-[#111]/40">{time} · Honda Activa · {price}/seat</p>
+        </div>
+        <p className="text-xs font-bold text-[#111]/30 uppercase tracking-widest mb-2">Riders</p>
+        <div className="bg-white border border-black/7 rounded-2xl px-4 mb-4">{riderRows}</div>
+        {showActions ? (
+          <div className="flex gap-3">
+            <button onClick={() => {setDrawerOpen(false); navigate('/offer-ride');}} className="flex-1 h-11 rounded-2xl bg-[#F7F7F5] border border-black/8 text-[#111] font-bold text-sm flex items-center justify-center gap-2">
+              <span className="icon-o" style={{fontSize:'17px'}}>edit</span>Edit
+            </button>
+            <button onClick={() => {setDrawerOpen(false); setCancelModalOpen(true);}} className="flex-1 h-11 rounded-2xl bg-[#FEF2F2] text-[#EF4444] font-bold text-sm flex items-center justify-center gap-2">
+              <span className="icon-o" style={{fontSize:'17px'}}>cancel</span>Cancel
+            </button>
+          </div>
+        ) : (
+          <button onClick={() => {setDrawerOpen(false); navigate('/offer-ride');}} className="w-full h-11 rounded-2xl bg-[#F07B3A] text-white font-bold text-sm flex items-center justify-center gap-2">
+            <span className="icon" style={{fontSize:'17px'}}>replay</span>Offer again
+          </button>
+        )}
       </div>
-      <div class="bg-[#F7F7F5] rounded-2xl p-4 mb-4">
-        <p class="font-bold text-sm text-[#111] mb-0.5">${route}</p>
-        <p class="text-xs text-[#111]/40">${time} · Honda Activa · ${price}/seat</p>
-      </div>
-      <p class="text-xs font-bold text-[#111]/30 uppercase tracking-widest mb-2">Riders</p>
-      <div class="bg-white border border-black/7 rounded-2xl px-4 mb-4">${riderRows}</div>
-      ${showActions ? `
-      <div class="flex gap-3">
-        <button onClick={() => {setDrawerOpen(false); navigate('/offer-ride');}}" class="flex-1 h-11 rounded-2xl bg-[#F7F7F5] border border-black/8 text-[#111] font-bold text-sm flex items-center justify-center gap-2">
-          <span class="icon-o" style="font-size:17px;">edit</span>Edit
-        </button>
-        <button onClick={() => {setDrawerOpen(false); setCancelModalOpen(true);}}" class="flex-1 h-11 rounded-2xl bg-[#FEF2F2] text-[#EF4444] font-bold text-sm flex items-center justify-center gap-2">
-          <span class="icon-o" style="font-size:17px;">cancel</span>Cancel
-        </button>
-      </div>` : `
-      <button onClick={() => {setDrawerOpen(false); navigate('/offer-ride');}}" class="w-full h-11 rounded-2xl bg-[#F07B3A] text-white font-bold text-sm flex items-center justify-center gap-2">
-        <span class="icon" style="font-size:17px;">replay</span>Offer again
-      </button>`}
-    `;
+    );
   };
 
   const doCancel = () => {
@@ -424,7 +436,7 @@ const MyOffer = () => {
       <div id="d-overlay" className={drawerOpen ? 'show' : ''} onClick={() => setDrawerOpen(false)}></div>
       <div id="drawer" className={drawerOpen ? 'open' : ''}>
         <div className="w-10 h-1 bg-black/10 rounded-full mx-auto mb-4"></div>
-        <div id="drawer-body" dangerouslySetInnerHTML={{__html: drawerContent}}></div>
+        <div id="drawer-body">{drawerContent}</div>
       </div>
 
       {cancelModalOpen && (

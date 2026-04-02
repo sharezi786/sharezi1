@@ -8,6 +8,9 @@ import FindRide from '../pages/findRide/findRide';
 import RideDetails from '../pages/rideDetails/rideDetails';
 import OfferRide from '../pages/offerRide/offerRide';
 import MyOffer from '../pages/myofferComponents/MyOffer';
+import ChatBox from '../components/chatBox/chatBox';
+import PostFood from '../pages/postFood/postFood';
+import Wallet from "../pages/wallet/wallet";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +55,18 @@ const router = createBrowserRouter([
       {
         path: "my-offers",
         element: <MyOffer />,
+      },
+      {
+        path: "chat-box",
+        element: <ChatBox />,
+      },
+      {
+        path: "post-food",
+        element: <PostFood />,
+      },
+      {
+        path: "wallet",
+        element: <Wallet />,
       },
     ],
   },

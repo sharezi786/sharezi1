@@ -5,10 +5,61 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
   const navigate = useNavigate();
   const handleInputChange = (e) => {
     onChange(e);
+    // Recalculate strength if password field changed
+    if (e.target.name === 'password') {
+      const newStrength = getPasswordStrength(e.target.value);
+      // Force re-render by updating state
+    }
+  };
+
+  const handleGoogleSignup = () => {
+    navigate('/verify');
   };
 
   const [dragOver, setDragOver] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
+  const [submitErrors, setSubmitErrors] = React.useState({});
+
+  const validateForm = () => {
+    const errors = {};
+    
+    // Debug: Log current form data
+    console.log('Current formData:', formData);
+    
+    // Check if name is empty
+    if (!formData.name || formData.name.length < 2) {
+      errors.name = 'Enter your full name';
+    }
+    
+    // Check if email is empty
+    if (!formData.email) {
+      errors.email = 'Enter your email address';
+    }
+    
+    // Check if phone is empty
+    if (!formData.phone) {
+      errors.phone = 'Enter your phone number';
+    }
+    
+    // Check if college is empty
+    if (!formData.college) {
+      errors.college = 'Enter your college/university';
+    }
+    
+    // Check if password is empty
+    if (!formData.password || formData.password.length < 8) {
+      errors.password = 'Password must be at least 8 characters';
+    }
+    
+    // Check if terms are not accepted
+    if (!formData.terms) {
+      errors.terms = 'You must agree to the terms and conditions';
+    }
+    
+    console.log('Validation errors:', errors);
+    setSubmitErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const getPasswordStrength = (password = "") => {
     let strength = 0;
@@ -71,14 +122,21 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
       <p className="text-[#111]/40 text-sm mb-7">Fill in your details below</p>
 
       {/* Google */}
-      <button className="btn-g mb-4" onClick={() => window.location.href = 'verify.html'}>
+      <button className="btn-g mb-4" onClick={handleGoogleSignup}>
         <svg width="17" height="17" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
         Continue with Google
       </button>
 
       <div className="div-or text-xs text-[#111]/30 font-medium mb-5">or fill in details</div>
 
-      <form onSubmit={onSubmit} noValidate>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        if (validateForm()) {
+          onSubmit(e);
+        } else {
+          // Show errors without submitting
+        }
+      }} noValidate>
         <div className="flex flex-col gap-4">
 
           {/* Name */}
@@ -225,27 +283,26 @@ const SignupFormStep = ({ selectedRole, formData, errors, onChange, onSubmit, up
           <div>
             <label className="lbl">Password</label>
             <div className="inp-wrap">
-              <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#111]/60" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm3 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-              </svg>
+              <span className="i-l icon-o" style={{ fontSize: '17px' }}>lock</span>
               <input className={`inp ${errors.password ? 'err' : ''}`} style={{ paddingRight: '42px' }} name="password" type={showPassword ? 'text' : 'password'} placeholder="Min 8 characters" value={formData.password} onChange={handleInputChange} autoComplete="new-password" />
               <button type="button" className="i-r" onClick={() => setShowPassword(!showPassword)}>
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                   {showPassword ? (
-                    <path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92 1.11-1.11L3.51 2.3 2.4 3.41l1.42 1.42C2.96 6.39 2.73 8.22 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42 1.11-1.11L12 7zM12 17c-2.76 0-5-2.24-5-5 0-.77.18-1.5.49-2.14l1.57 1.57c-.03.18-.06.37-.06.57 0 2.21 1.79 4 4 4 .2 0 .39-.03.57-.07l1.57 1.57c-.64.31-1.37.49-2.14.49zm2.07-7.75c-.12-.06-.25-.1-.39-.1-1.1 0-2 .9-2 2 0 .14.04.27.1.39l1.49 1.49zM12 4.5c5 0 9.27 3.11 11 7.5-.23.63-.52 1.23-.85 1.78l-1.48-1.48c.23-.41.44-.85.62-1.3C19.27 7.61 15 4.5 10 4.5c-.71 0-1.4.08-2.06.24l1.48 1.48c.55-.23.99-.44 1.4-.62zM12 4.5c5 0 9.27 3.11 11 7.5-.23.63-.52 1.23-.85 1.78l-1.48-1.48c.23-.41.44-.85.62-1.3C19.27 7.61 15 4.5 10 4.5c-.71 0-1.4.08-2.06.24l1.48 1.48c.55-.23.99-.44 1.4-.62z"/>
+                    <path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92 1.11-1.11L3.51 2.3 2.4 3.41L1.42 1.42C2.96 6.39 2.73 8.22 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42 1.11-1.11L12 7zM12 17c-2.76 0-5-2.24-5-5 0-.77.18-1.5.49-2.14l1.57 1.57c-.03.18-.06.37-.06.57 0 2.21 1.79 4 4 4 .2 0 .39-.03.57-.07l1.57 1.57c-.64.31-1.37.49-2.14.49zm2.07-7.75c-.12-.06-.25-.1-.39-.1-1.1 0-2 .9-2 2 0 .14.04.27.1.39l1.49 1.49zM12 4.5c5 0 9.27 3.11 11 7.5-.23.63-.52 1.23-.85 1.78l-1.48-1.48c.23-.41.44-.85.62-1.3C19.27 7.61 15 4.5 10 4.5c-.71 0-1.4.08-2.06.24l1.48 1.48c.55-.23.99-.44 1.4-.62zM12 4.5c5 0 9.27 3.11 11 7.5-.23.63-.52 1.23-.85 1.78l-1.48-1.48c.23-.41.44-.85.62-1.3C19.27 7.61 15 4.5 10 4.5c-.71 0-1.4.08-2.06.24l1.48 1.48c.55-.23.99-.44 1.4-.62z"/>
                   ) : (
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3z"/>
                   )}
                 </svg>
               </button>
             </div>
             {/* Strength */}
             <div className="flex gap-1 mt-2">
-              {[0, 1, 2, 3].map((i) => (
-                <div key={i} className={`sbar flex-1 ${strength > i ? strengthColors[strength] : ''}`}></div>
-              ))}
+              <div className="sbar flex-1" id="sb1" style={{ backgroundColor: strength >= 1 ? (strength === 1 ? '#EF4444' : strength === 2 ? '#F59E0B' : strength === 3 ? '#10B981' : '#6B7280') : '#E5E7EB' }}></div>
+              <div className="sbar flex-1" id="sb2" style={{ backgroundColor: strength >= 2 ? (strength === 2 ? '#F59E0B' : strength === 3 ? '#10B981' : '#6B7280') : '#E5E7EB' }}></div>
+              <div className="sbar flex-1" id="sb3" style={{ backgroundColor: strength >= 3 ? (strength === 3 ? '#10B981' : '#6B7280') : '#E5E7EB' }}></div>
+              <div className="sbar flex-1" id="sb4" style={{ backgroundColor: strength >= 4 ? '#6B7280' : '#E5E7EB' }}></div>
             </div>
-            <p className="text-[11px] mt-1" style={{ color: 'rgba(0,0,0,.3)' }}>{strengthLabels[strength]}</p>
+            <p className="text-[11px] mt-1" style={{ color: '#666' }}>{strengthLabels[strength]}</p>
             <div className="ferr" style={{ display: errors.password ? 'flex' : 'none' }}>
               <svg className="w-4 h-4 text-[#EF4444]" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>

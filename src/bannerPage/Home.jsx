@@ -44,7 +44,7 @@ const Home = () => {
       icon: "restaurant",
       bg: "#FFF3EC",
       color: "#F07B3A",
-      href: "#"
+      href: "/find-food"
     },
     {
       title: "Post Food",
@@ -52,7 +52,7 @@ const Home = () => {
       icon: "lunch_dining",
       bg: "#FFF3EC",
       color: "#F07B3A",
-      href: "#"
+      href: "/post-food"
     },
     {
       title: "Wallet & Rewards",
@@ -60,7 +60,8 @@ const Home = () => {
       icon: "account_balance_wallet",
       bg: "#EAF9F7",
       color: "#3DBDA8",
-      href: "#"
+      href: "/wallet"
+
     },
     {
       title: "Chat & Forum",
@@ -68,7 +69,7 @@ const Home = () => {
       icon: "forum",
       bg: "#F3EFFE",
       color: "#8B5CF6",
-      href: "#"
+      href: "/chat-box"
     }
   ];
 

@@ -103,7 +103,9 @@ const RoleSelectStep = ({ selectedRole, onSelectRole, onContinue, roleConfig }) 
         </button>
       </div>
 
-      <div className="div-or text-xs text-[#111]/30 font-medium my-5">or</div>
+      <div className="div-or text-xs text-[#111]/30 font-medium my-5">
+        <span className="relative px-3">or</span>
+      </div>
 
       <div>
         <button className="btn-g" onClick={handleGoogleSignup}>

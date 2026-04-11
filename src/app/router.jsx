@@ -11,6 +11,8 @@ import MyOffer from '../pages/myofferComponents/MyOffer';
 import ChatBox from '../components/chatBox/chatBox';
 import PostFood from '../pages/postFood/postFood';
 import Wallet from "../pages/wallet/wallet";
+import FindFood from '../pages/findFood/FindFood';
+import FoodDetails from '../pages/foodDetail/FoodDetails';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +65,14 @@ const router = createBrowserRouter([
       {
         path: "post-food",
         element: <PostFood />,
+      },
+      {
+        path: "find-food",
+        element: <FindFood />,
+      },
+      {
+        path: "food-details/:foodId",
+        element: <FoodDetails />,
       },
       {
         path: "wallet",

@@ -15,12 +15,12 @@ const PhoneStep = ({
           <svg className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[#111]/28" viewBox="0 0 24 24" fill="currentColor">
             <path d="M6.62 10.79c1.44 2.83 3.76 5.15 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
           </svg>
-          <span className="absolute left-10 top-1/2 transform -translate-y-1/2 text-[#111]/45 text-sm font-['DM Sans']">+91</span>
+          <span className="absolute left-10 top-1/2 transform -translate-y-1/2 text-[#111]/45 text-sm font-['DM Sans']"></span>
           <input
             type="tel"
             value={phone}
             onChange={onPhoneChange}
-            placeholder="98765 43210"
+            placeholder="(555) 867-5309"
             maxLength={10}
             className="w-full h-[48px] border border-black/10 rounded-xl bg-white pl-[70px] pr-4 text-sm font-['DM Sans'] text-[#111] outline-none focus:border-[#F07B3A] focus:shadow-[0_0_0_3px_rgba(240,123,58,.10)]"
           />

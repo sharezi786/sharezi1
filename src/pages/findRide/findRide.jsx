@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BottomNav from "../../components/bannerComponents/layout/BottomNav";
+import BottomNavBar from "../../components/bannerComponents/layout/BottomNavBar";
 
 const FindRide = () => {
   const navigate = useNavigate();
@@ -314,15 +314,81 @@ const FindRide = () => {
       {/* Map View */}
       {view === 'map' && (
         <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 map-placeholder m-3 relative">
+            {/* Grid pattern */}
+            <svg width="100%" height="100%" className="absolute inset-0 opacity-20">
+              <defs>
+                <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse">
+                  <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(61,189,168,.6)" strokeWidth=".5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#g)"/>
+            </svg>
+            
+            {/* Route lines */}
+            <svg className="absolute inset-0" width="100%" height="100%" viewBox="0 0 400 340" preserveAspectRatio="none">
+              <path 
+                d="M 60 280 Q 120 200 180 150 Q 240 100 310 70" 
+                fill="none" 
+                stroke="#F07B3A" 
+                strokeWidth="2.5" 
+                strokeDasharray="7,4" 
+                opacity=".7"
+              />
+              <path 
+                d="M 80 260 Q 150 210 200 180 Q 260 150 340 90" 
+                fill="none" 
+                stroke="#3DBDA8" 
+                strokeWidth="2" 
+                strokeDasharray="5,3" 
+                opacity=".5"
+              />
+            </svg>
+            
+            {/* Driver pins */}
+            <div className="absolute" style={{ left: '14%', bottom: '18%' }}>
+              <div className="w-4 h-4 rounded-full bg-[#3DBDA8] map-ping"></div>
+              <div className="bg-[#3DBDA8] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-lg mt-1 whitespace-nowrap shadow">
+                Riya · $40
+              </div>
+            </div>
+            <div className="absolute" style={{ left: '38%', bottom: '42%' }}>
+              <div className="w-4 h-4 rounded-full bg-[#8B5CF6] map-ping2"></div>
+              <div className="bg-[#8B5CF6] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-lg mt-1 whitespace-nowrap shadow">
+                Karan · $55
+              </div>
+            </div>
+            <div className="absolute" style={{ left: '62%', bottom: '60%' }}>
+              <div className="w-4 h-4 rounded-full bg-[#EF4444] map-ping3"></div>
+              <div className="bg-[#EF4444] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-lg mt-1 whitespace-nowrap shadow">
+                Sneha · $35
+              </div>
+            </div>
+            
+            {/* User pin */}
+            <div className="absolute" style={{ left: '10%', bottom: '15%' }}>
+              <div className="w-5 h-5 rounded-full bg-[#111] border-2 border-white shadow-lg flex items-center justify-center">
+                <span className="icon text-white" style={{ fontSize: '11px' }}>person</span>
+              </div>
+              <div className="bg-[#111] text-white text-[9px] font-bold px-1.5 py-0.5 rounded-lg mt-1 whitespace-nowrap shadow">
+                You
+              </div>
+            </div>
+            
+            {/* Map label */}
+            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm border border-black/8 rounded-xl px-3 py-1.5 text-xs font-semibold text-[#111]/50">
+              Campus Area
+            </div>
+          </div>
           <div className="flex-1 m-3 rounded-2xl relative overflow-hidden">
-            <iframe
+            {/* <iframe
               src="https://www.openstreetmap.org/export/embed.html?bbox=72.8,19.0,73.0,19.3&layer=mapnik"
               width="100%"
               height="100%"
               style={{ border: 'none', borderRadius: '16px' }}
               title="Map View"
-            ></iframe>
-            {/* Mini card strip */}
+            ></iframe> */}
+            
             <div className="flex gap-3 overflow-x-auto px-3 pb-3 absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm">
               {rides.slice(0, 3).map((ride) => (
                 <div key={ride.id} className="bg-white border border-black/7 rounded-2xl p-3 shrink-0 shadow-sm flex items-center gap-3 min-w-[200px]" onClick={() => goToRide(ride.id)}>
@@ -337,7 +403,7 @@ const FindRide = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> 
         </div>
       )}
 
@@ -487,7 +553,7 @@ const FindRide = () => {
         </>
       )}
 
-      <BottomNav />
+      <BottomNavBar />
     </div>
   );
 };

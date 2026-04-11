@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/dm-sans": "^5.2.8",
+    "@fontsource/material-symbols-rounded": "^5.2.40",
+    "@fontsource/syne": "^5.2.7",
     "@reduxjs/toolkit": "^2.11.2",
     "@tailwindcss/vite": "^4.2.1",
     "framer-motion": "^12.35.0",

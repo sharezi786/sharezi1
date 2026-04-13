@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BottomNavigation from '../../components/BottomNavigation';
 
 const FindFood = () => {
   const navigate = useNavigate();
@@ -534,34 +535,7 @@ const FindFood = () => {
       </div>
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 flex z-20 bg-white/96 backdrop-blur-md border-t border-black/7">
-        <button 
-          onClick={() => navigate('/student-home')}
-          className="nav-item flex-1 flex flex-col items-center justify-center gap-1 p-2 cursor-pointer"
-        >
-          <span className="icon-o nav-icon" style={{ fontSize: '22px', opacity: 0.3 }}>home</span>
-          <span className="nav-label text-[10px] font-semibold opacity-30">Home</span>
-        </button>
-        <button 
-          onClick={() => navigate('/find-ride')}
-          className="nav-item flex-1 flex flex-col items-center justify-center gap-1 p-2 cursor-pointer"
-        >
-          <span className="icon-o nav-icon" style={{ fontSize: '22px', opacity: 0.3 }}>directions_car</span>
-          <span className="nav-label text-[10px] font-semibold opacity-30">Rides</span>
-        </button>
-        <div className="nav-item flex-1 flex flex-col items-center justify-center gap-1 p-2">
-          <span className="icon nav-icon" style={{ fontSize: '22px', color: '#F07B3A', opacity: 1 }}>restaurant</span>
-          <span className="nav-label text-[10px] font-semibold text-[#F07B3A] opacity-1">Food</span>
-        </div>
-        <button className="nav-item flex-1 flex flex-col items-center justify-center gap-1 p-2 cursor-pointer">
-          <span className="icon-o nav-icon" style={{ fontSize: '22px', opacity: 0.3 }}>forum</span>
-          <span className="nav-label text-[10px] font-semibold opacity-30">Messages</span>
-        </button>
-        <button className="nav-item flex-1 flex flex-col items-center justify-center gap-1 p-2 cursor-pointer">
-          <span className="icon-o nav-icon" style={{ fontSize: '22px', opacity: 0.3 }}>person</span>
-          <span className="nav-label text-[10px] font-semibold opacity-30">Profile</span>
-        </button>
-      </nav>
+      <BottomNavigation />
 
       {/* Filter Drawer */}
       {filterDrawerOpen && (

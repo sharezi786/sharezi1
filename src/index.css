@@ -416,6 +416,18 @@ svg {
   user-select: none;
 }
 
+/* Up animation for profile elements */
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ── Animations ── */
 @keyframes pulse {
 
@@ -466,7 +478,7 @@ svg {
 }
 
 /* ── Buttons ── */
-.btn-teal {
+/* .btn-teal {
   background: #3DBDA8;
   color: #fff;
   font-weight: 700;
@@ -485,7 +497,7 @@ svg {
   background: #2AA898;
   box-shadow: 0 8px 24px rgba(61, 189, 168, .38);
   transform: translateY(-1px);
-}
+} */
 
 .btn-outline {
   background: #fff;

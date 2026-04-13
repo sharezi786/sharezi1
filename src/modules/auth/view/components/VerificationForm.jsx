@@ -49,7 +49,7 @@ const VerificationForm = () => {
         </div>
       </header>
 
-      <main className="flex-1 flex items-center justify-center px-4 py-12 relative z-10">
+      <main className="flex-1 flex items-center justify-center px-4 py-12 mt-8 relative z-10">
         <div className="w-full max-w-[420px]">
           <div className="flex justify-center mb-7 u1">
             <div className="clock-wrap w-20 h-20 rounded-full bg-[#FEF9EC] border-2 border-[#F5B942]/30 flex items-center justify-center">
@@ -92,7 +92,7 @@ const VerificationForm = () => {
           </div>
 
           <div className="flex flex-col gap-3 u5">
-            <button onClick={handleBrowseApp} className="btn-teal">
+            <button onClick={handleBrowseApp} className="btn-teal text-sm px-7 py-3.5 rounded-2xl gap-2 flex justify-center items-center">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>

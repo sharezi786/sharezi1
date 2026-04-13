@@ -13,6 +13,7 @@ import PostFood from '../pages/postFood/postFood';
 import Wallet from "../pages/wallet/wallet";
 import FindFood from '../pages/findFood/FindFood';
 import FoodDetails from '../pages/foodDetail/FoodDetails';
+import Profile from '../pages/profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "wallet",
         element: <Wallet />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     ],
   },

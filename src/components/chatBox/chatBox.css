@@ -76,12 +76,12 @@
 }
 
 .nav-item.active .nav-label {
-  color: #F07B3A;
+  color: #3DBDA8;
   opacity: 1;
 }
 
 .nav-item.active .nav-icon {
-  color: #F07B3A !important;
+  color: #3DBDA8 !important;
   opacity: 1 !important;
 }
 

@@ -18,24 +18,24 @@ const MyOffer = () => {
       content = riderListHTML('IITB Gate 1 → Andheri Station', 'Today · 10:30 AM', [
         {name:'Riya S.', col:'#3DBDA8', status:'Confirmed', paid:true},
         {name:'Karan M.', col:'#8B5CF6', status:'Confirmed', paid:true},
-      ], '₹40', true);
+      ], '$40', true);
     } else if (key === 'full') {
       content = riderListHTML('Powai Lake → BKC Metro', 'Today · 2:00 PM', [
         {name:'Sneha R.', col:'#EF4444', status:'Confirmed', paid:true},
         {name:'Arjun T.', col:'#F59E0B', status:'Confirmed', paid:false},
-      ], '₹55', true);
+      ], '$55', true);
     } else if (key === 'upcoming') {
-      content = riderListHTML('Hiranandani → Vikhroli', 'Tomorrow · 9:00 AM', [], '₹35', true);
+      content = riderListHTML('Hiranandani → Vikhroli', 'Tomorrow · 9:00 AM', [], '$35', true);
     } else if (key === 'past1') {
       content = riderListHTML('IITB Gate 1 → Andheri Station', 'Yesterday · 9:15 AM', [
         {name:'Riya S.', col:'#3DBDA8', status:'Completed', paid:true},
         {name:'Mihir P.', col:'#10B981', status:'Completed', paid:true},
-      ], '₹40', false);
+      ], '$40', false);
     } else if (key === 'past2') {
       content = riderListHTML('Powai → BKC', '2 days ago · 11:00 AM', [
         {name:'Sneha R.', col:'#EF4444', status:'Completed', paid:true},
         {name:'Arjun T.', col:'#F59E0B', status:'Completed', paid:true},
-      ], '₹55', false);
+      ], '$55', false);
     } else if (key === 'cancelled') {
       content = <p className="text-center text-[#111]/40 py-8 text-sm">This ride was cancelled by you.</p>;
     } else if (key === 'edit') {
@@ -154,7 +154,7 @@ const MyOffer = () => {
               <p className="text-[10px] text-[#111]/40 mt-0.5 font-semibold">Total rides</p>
             </div>
             <div className="stat-card">
-              <p style={{fontFamily:'Syne', fontWeight:800}} className="text-xl text-[#3DBDA8]">₹2,340</p>
+              <p style={{fontFamily:'Syne', fontWeight:800}} className="text-xl text-[#3DBDA8]">$2,340</p>
               <p className="text-[10px] text-[#111]/40 mt-0.5 font-semibold">Earned</p>
             </div>
             <div className="stat-card">
@@ -187,7 +187,7 @@ const MyOffer = () => {
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1.5">
                     <p className="text-xs text-[#111]/45 font-medium">2 of 3 seats taken</p>
-                    <p className="text-xs font-bold text-[#F07B3A]">₹40/seat · ₹80 earned</p>
+                    <p className="text-xs font-bold text-[#F07B3A]">$40/seat · $80 earned</p>
                   </div>
                   <div className="h-2 bg-[#F7F7F5] rounded-full overflow-hidden">
                     <div className="h-full bg-[#F07B3A] rounded-full" style={{width:'66.6%', transition:'width .4s ease'}}></div>
@@ -235,7 +235,7 @@ const MyOffer = () => {
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1.5">
                     <p className="text-xs text-[#111]/45 font-medium">2 of 2 seats taken</p>
-                    <p className="text-xs font-bold text-[#F07B3A]">₹55/seat · ₹110 earned</p>
+                    <p className="text-xs font-bold text-[#F07B3A]">$55/seat · $110 earned</p>
                   </div>
                   <div className="h-2 bg-[#F7F7F5] rounded-full overflow-hidden">
                     <div className="h-full bg-[#3DBDA8] rounded-full" style={{width:'100%'}}></div>
@@ -278,7 +278,7 @@ const MyOffer = () => {
                 <div className="mb-3">
                   <div className="flex items-center justify-between mb-1.5">
                     <p className="text-xs text-[#111]/45 font-medium">0 of 3 seats taken</p>
-                    <p className="text-xs font-bold text-[#111]/40">₹35/seat</p>
+                    <p className="text-xs font-bold text-[#111]/40">$35/seat</p>
                   </div>
                   <div className="h-2 bg-[#F7F7F5] rounded-full overflow-hidden">
                     <div className="h-full bg-[#F07B3A] rounded-full" style={{width:'0%'}}></div>
@@ -318,7 +318,7 @@ const MyOffer = () => {
                     </div>
                     <p className="text-xs text-[#111]/40">Yesterday · 9:15 AM · 2 riders</p>
                   </div>
-                  <p className="text-sm font-bold text-[#3DBDA8] shrink-0">+₹80</p>
+                  <p className="text-sm font-bold text-[#3DBDA8] shrink-0">+$80</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
@@ -346,7 +346,7 @@ const MyOffer = () => {
                     </div>
                     <p className="text-xs text-[#111]/40">2 days ago · 11:00 AM · 2 riders</p>
                   </div>
-                  <p className="text-sm font-bold text-[#3DBDA8] shrink-0">+₹110</p>
+                  <p className="text-sm font-bold text-[#3DBDA8] shrink-0">+$110</p>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
@@ -374,7 +374,7 @@ const MyOffer = () => {
                     </div>
                     <p className="text-xs text-[#111]/40">3 days ago · Cancelled by you</p>
                   </div>
-                  <p className="text-xs text-[#111]/30 shrink-0">₹0</p>
+                  <p className="text-xs text-[#111]/30 shrink-0">$0</p>
                 </div>
               </div>
 

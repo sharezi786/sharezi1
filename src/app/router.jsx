@@ -14,6 +14,7 @@ import Wallet from "../pages/wallet/wallet";
 import FindFood from '../pages/findFood/FindFood';
 import FoodDetails from '../pages/foodDetail/FoodDetails';
 import Profile from '../pages/profile/Profile';
+import RideHistory from '../pages/rideHistory/RideHistory';
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "ride-history",
+        element: <RideHistory />,
       },
     ],
   },

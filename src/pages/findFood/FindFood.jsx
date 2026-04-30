@@ -25,31 +25,31 @@ const FindFood = () => {
     {
       id: 'tiffin1',
       emoji: '🍱',
-      name: 'Lentil Rice Combo',
+      name: 'Denis Perch Sandwich Combo',
       price: '$80',
       by: 'Priya N.',
       hostel: 'East Dorm',
       portions: 2,
       ready: '10 min',
       veg: true,
-      desc: 'Home-cooked dal tadka with steamed rice, pickle, and papad. Made fresh every day.',
+      desc: 'By Laurie C. · Fenn Tower · 2 portions left.',
       rating: '4.8',
       reviews: 32,
-      category: 'tiffin',
+      category: 'breakfast',
       tags: ['veg', 'popular'],
       gradient: 'linear-gradient(135deg,#FFF3EC,#FFECD6)'
     },
     {
       id: 'snacks1',
       emoji: '🍜',
-      name: 'Noodle Bowl',
+      name: 'Subway Italian BMT',
       price: '$40',
       by: 'Karan M.',
       hostel: 'South Hall',
       portions: 5,
       ready: '5 min',
       veg: true,
-      desc: 'Classic two-minute Noodles with veggies and spiced. Customise with extra spice!',
+      desc: 'By Mike D. · Rhodes Tower · 5 portions left',
       rating: '4.5',
       reviews: 18,
       category: 'snacks',
@@ -59,14 +59,15 @@ const FindFood = () => {
     {
       id: 'group',
       emoji: '🍕',
-      name: 'Campus Pizza Group Order',
+      name: 'Winking Lizard Pizza Night',
       price: '$150',
       by: 'Sneha R.',
       hostel: 'West Dorm',
       portions: 2,
-      ready: '45 min',
+      // ready: '45 min',
+      order: '8:00 pm',
       veg: false,
-      desc: 'Split a large campus pizza order with hostel mates. 4 of 6 slots filled – join before 8 PM!',
+      desc: 'Organised by Bella T. · University Hall',
       rating: null,
       reviews: 0,
       category: 'group',
@@ -77,67 +78,67 @@ const FindFood = () => {
       gradient: 'linear-gradient(135deg,#F3EFFE,#EDE0FF)'
     },
     {
-      id: 'tiffin2',
+      id: 'tiffin1',
       emoji: '🍗',
-      name: 'Chicken Curry + Rice',
+      name: 'Winking Lizard Wings',
       price: '$120',
       by: 'Arjun T.',
       hostel: 'North Hall',
       portions: 3,
       ready: '15 min',
-      veg: false,
-      desc: 'Spicy home-style chicken curry served with fragrant basmati rice and a side salad.',
+      veg: true,
+      desc: 'By Andrew T. · Parker Hannifin Hall · 3 portions left.',
       rating: '4.9',
       reviews: 44,
-      category: 'tiffin',
+      category: 'breakfast',
       tags: ['nonveg'],
       gradient: 'linear-gradient(135deg,#FEF2F2,#FFE4E1)'
     },
     {
       id: 'sweets1',
       emoji: '🍮',
-      name: 'Homemade Honey Donuts',
+      name: 'Homemade Buckeye Brownies',
       price: '$60',
       by: 'Riya N.',
       hostel: 'East Dorm',
       portions: 8,
       ready: 'Now',
       veg: true,
-      desc: 'Soft and syrupy honey donuts made from khoya. 4 pieces per portion.',
+      desc: 'By Sara N. · Fenn Tower · 8 portions left.',
       rating: '5.0',
       reviews: 61,
-      category: 'sweets',
+      category: 'desserts',
       tags: ['veg', 'popular'],
       gradient: 'linear-gradient(135deg,#FFF9EC,#FFEECC)'
     },
     {
       id: 'drinks1',
       emoji: '☕',
-      name: 'Spiced Chai',
+      name: 'Cleveland Chai Latte',
       price: '$30',
       by: 'Mihir P.',
       hostel: 'South Hall',
       portions: 10,
       ready: '3 min',
       veg: true,
-      desc: 'Strong spiced chai with ginger, cardamom, and tulsi. Best had hot!',
+      desc: 'By Chris L. · Rhodes Tower · Made fresh!',
       rating: '4.7',
       reviews: 27,
-      category: 'drinks',
+      category: 'beverages',
       tags: ['veg', 'hot'],
       gradient: 'linear-gradient(135deg,#FFF3EC,#FFE8D6)'
     },
     {
       id: 'snacks2',
       emoji: '🥪',
-      name: 'Egg Sandwich',
+      name: 'Subway Egg & Cheese',
       price: '$70',
       by: 'Rohan K.',
       hostel: 'Central Dorm',
       portions: 4,
       ready: '8 min',
       veg: false,
-      desc: 'Double egg sandwich on toasted bread with cheese, lettuce and mayo.',
+      desc: 'Double Subway Egg & Cheese on toasted bread with cheese, lettuce and mayo.',
       rating: '4.6',
       reviews: 21,
       category: 'snacks',
@@ -147,17 +148,17 @@ const FindFood = () => {
     {
       id: 'tiffin3',
       emoji: '🫓',
-      name: 'Cottage Cheese Sabji + Flatbread',
+      name: 'Winking Lizard Burger',
       price: '$90',
       by: 'Sneha R.',
       hostel: 'West Dorm',
       portions: 2,
       ready: '20 min',
       veg: true,
-      desc: 'Cottage Cheese bhurji with 3 soft rotis. Mildly spiced and perfect for dinner.',
+      desc: 'By Bella T. · University Hall · 2 portions left.',
       rating: '4.7',
       reviews: 15,
-      category: 'tiffin',
+      category: 'breakfast',
       tags: ['veg'],
       gradient: 'linear-gradient(135deg,#EFF6FF,#DBEAFE)'
     }
@@ -166,11 +167,11 @@ const FindFood = () => {
   // Categories
   const categories = [
     { key: 'all', label: 'All', icon: 'restaurant', color: '#F07B3A' },
-    { key: 'tiffin', label: 'Tiffin', icon: 'lunch_dining', color: '#3DBDA8' },
+    { key: 'breakfast', label: 'Breakfast', icon: 'lunch_dining', color: '#3DBDA8' },
     { key: 'snacks', label: 'Snacks', icon: 'bakery_dining', color: '#F5B942' },
     { key: 'group', label: 'Group orders', icon: 'group', color: '#8B5CF6' },
-    { key: 'sweets', label: 'Sweets', icon: 'cake', color: '#EC4899' },
-    { key: 'drinks', label: 'Drinks', icon: 'local_cafe', color: '#F07B3A' }
+    { key: 'desserts', label: 'Desserts', icon: 'cake', color: '#EC4899' },
+    { key: 'beverages', label: 'Beverages', icon: 'local_cafe', color: '#F07B3A' }
   ];
 
   // Reusable filter button component
@@ -487,34 +488,67 @@ const FindFood = () => {
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-[#111]/45 mb-3">
-                    <span>By {food.by}</span>
-                    <span className="w-1 h-1 bg-[#111]/20 rounded-full"></span>
-                    <span>{food.hostel}</span>
-                    <span className="w-1 h-1 bg-[#111]/20 rounded-full"></span>
-                    <span>{food.portions} portions</span>
-                  </div>
+                  {/* <div className="flex items-center gap-2 text-xs text-[#111]/45 mb-3">
+                    {/* <span>By {food.by}</span> */}
+                    {/* <span className="w-1 h-1 bg-[#111]/20 rounded-full"></span> */}
+                    {/* <span>{food.hostel}</span> */}
+                    {/* <span className="w-1 h-1 bg-[#111]/20 rounded-full"></span> */}
+                    {/* <span>{food.portions} portions</span> 
+                  </div> */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1.5 text-xs text-[#111]/40">
-                      <span className="icon-o" style={{ fontSize: '13px' }}>schedule</span>
-                      Ready in {food.ready}
+                    <div className="flex items-center gap-4 text-xs text-[#111]/40">
+                      {food.ready && (
+                        <div className="flex items-center gap-1.5">
+                          <span className="icon-o" style={{ fontSize: '13px' }}>schedule</span>
+                          Ready in {food.ready}
+                        </div>
+                      )}
+                      {food.order && (
+                        <div className="flex items-center gap-1.5">
+                          <span className="icon-o" style={{ fontSize: '13px' }}>access_time</span>
+                          Order by {food.order}
+                        </div>
+                      )}
                     </div>
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        addToOrder(food.name, food.price);
-                      }}
-                      className={`h-8 px-3 rounded-xl text-white text-xs font-bold transition-colors flex items-center gap-1 ${
-                        food.isGroup 
-                          ? 'bg-[#8B5CF6] hover:bg-[#7C3AED]' 
-                          : 'bg-[#F07B3A] hover:bg-[#E8662A]'
-                      }`}
-                    >
-                      <span className="icon" style={{ fontSize: '14px' }}>
-                        {food.isGroup ? 'group_add' : 'add'}
-                      </span>
-                      {food.isGroup ? 'Join' : 'Order'}
-                    </button>
+                    {food.isGroup ? (
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // Check if order conditions are met
+                          const canOrder = food.order === '8:00 pm' && (!food.ready || food.ready === '5 min');
+                          if (canOrder) {
+                            addToOrder(food.name, food.price);
+                          } else {
+                            showToast('Joining not available for this item');
+                          }
+                        }}
+                        className={`h-8 px-3 rounded-xl text-white text-xs font-bold transition-colors flex items-center gap-1 ${
+                          food.order === '8:00 pm' && (!food.ready || food.ready === '5 min')
+                            ? 'bg-[#8B5CF6] hover:bg-[#7C3AED]'
+                            : 'bg-gray-300 cursor-not-allowed opacity-50'
+                        }`}
+                      >
+                        <span className="icon" style={{ fontSize: '14px' }}>group_add</span>
+                        Join
+                      </button>
+                    ) : (
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          // Check if order conditions are met
+                          const canOrder = food.order === '8:00 pm' && (!food.ready || food.ready === '5 min');
+                          if (canOrder) {
+                            addToOrder(food.name, food.price);
+                          } else {
+                            showToast('Ordering not available for this item');
+                          }
+                        }}
+                        className="h-8 px-3 rounded-xl text-white text-xs font-bold transition-colors flex items-center gap-1 bg-[#F07B3A] hover:bg-[#E8662A]"
+                      >
+                        <span className="icon" style={{ fontSize: '14px' }}>add</span>
+                        Order
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

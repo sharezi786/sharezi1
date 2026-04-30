@@ -57,7 +57,7 @@ const BottomNavigation = () => {
             className={`nav-icon ${item.isActive ? 'icon' : 'icon-o'}`} 
             style={{ 
               fontSize: '22px', 
-              opacity: item.isActive ? 1 : 0.3,
+              opacity: item.isActive ? 1 : 0.8,
               color: item.isActive ? '#F07B3A' : 'inherit'
             }}
           >
@@ -66,7 +66,7 @@ const BottomNavigation = () => {
           <span 
             className="nav-label text-[10px] font-semibold" 
             style={{ 
-              opacity: item.isActive ? 1 : 0.3,
+              opacity: item.isActive ? 1 : 0.8,
               color: item.isActive ? '#F07B3A' : 'inherit'
             }}
           >

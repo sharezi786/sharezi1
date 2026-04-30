@@ -412,7 +412,7 @@ const RideDetails = () => {
             className="flex-1 bg-[#F07B3A] text-white font-bold text-sm h-12 rounded-xl flex items-center justify-center gap-2 shadow-[0_4px_16px_rgba(240,123,58,.28)] hover:shadow-[0_8px_24px_rgba(240,123,58,.38)] hover:-translate-y-0.5 transition-all"
           >
             <span className="icon">event_note</span>
-            Request Seat — ₹{ride.total}
+            Request Seat — ${ride.total}
           </button>
           <button
             onClick={shareRide}
@@ -455,7 +455,7 @@ const RideDetails = () => {
                       style={{ fontFamily: "Syne" }}
                       className="text-lg font-black text-[#F07B3A]"
                     >
-                      ₹{ride.total}
+                      ${ride.total}
                     </span>
                     <p className="text-[10px] text-[#111]/35">total</p>
                   </div>
@@ -496,12 +496,12 @@ const RideDetails = () => {
                     Pay from Wallet
                   </p>
                   <p className="text-xs text-[#111]/40">
-                    ₹{ride.walletBalance} → ₹{ride.walletBalance - ride.total}{" "}
+                    ${ride.walletBalance} → ${ride.walletBalance - ride.total}{" "}
                     after booking
                   </p>
                 </div>
                 <span className="ml-auto text-xs font-bold text-[#3DBDA8]">
-                  ₹{ride.total}
+                  ${ride.total}
                 </span>
               </div>
 

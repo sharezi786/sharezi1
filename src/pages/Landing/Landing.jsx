@@ -195,7 +195,7 @@ const Stats = memo(() => (
         <p className="text-[#111]/45 text-sm">Rides completed</p>
       </div>
       <div className="text-center px-6">
-        <p style={{fontFamily:'Syne', fontWeight:800}} className="text-4xl sm:text-5xl grad-orange mb-1">₹12L</p>
+        <p style={{fontFamily:'Syne', fontWeight:800}} className="text-4xl sm:text-5xl grad-orange mb-1">$12L</p>
         <p className="text-[#111]/45 text-sm">Saved on travel</p>
       </div>
       <div className="text-center px-6">

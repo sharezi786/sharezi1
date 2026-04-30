@@ -21,10 +21,10 @@ const Wallet = () => {
   const transactions = [
     { id: 1, type: 'ride', title: 'Ride · North Campus → Downtown', subtitle: 'Today, 10:30 AM · Riya S.', amount: -40, method: 'Wallet' },
     { id: 2, type: 'reward', title: 'Reward redeemed · RIDE5', subtitle: 'Today, 10:25 AM', amount: 5, method: 'Credit' },
-    { id: 3, type: 'food', title: 'Food · Lentil Rice Combo', subtitle: 'Yesterday, 12:15 PM · Priya N.', amount: -8, method: 'Wallet' },
+    { id: 3, type: 'food', title: 'Food · Denis Perch Sandwich Combo', subtitle: 'Yesterday, 12:15 PM · Priya N.', amount: -8, method: 'Wallet' },
     { id: 4, type: 'topup', title: 'Wallet top-up', subtitle: 'Yesterday · Bank transfer', amount: 100, method: 'Added' },
     { id: 5, type: 'ride', title: 'Ride · Campus Lake → Central Station', subtitle: '2 days ago · Karan M.', amount: -55, method: 'Wallet' },
-    { id: 6, type: 'food', title: 'Food · Spiced Chai × 2', subtitle: '2 days ago · Mihir P.', amount: -6, method: 'Wallet' },
+    { id: 6, type: 'food', title: 'Food · Cleveland Chai Latte × 2', subtitle: '2 days ago · Mihir P.', amount: -6, method: 'Wallet' },
     { id: 7, type: 'reward', title: 'Referral bonus · Jake M. joined', subtitle: '3 days ago', amount: 10, method: 'Credit' },
     { id: 8, type: 'topup', title: 'Wallet top-up', subtitle: '1 week ago · Debit card', amount: 200, method: 'Added' }
   ];

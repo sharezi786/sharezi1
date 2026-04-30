@@ -609,10 +609,10 @@ const PhotoUpload = ({ photos, onPhotoChange, onPhotoRemove }) => {
 // Basic Info Component
 const BasicInfo = ({ formData, errors, onInputChange, onCategoryChange, onDietChange }) => {
   const categories = [
-    { id: 'tiffin', label: 'Tiffin', icon: <Icons.LunchDining /> },
+    { id: 'breakfast', label: 'Tiffin', icon: <Icons.LunchDining /> },
     { id: 'snacks', label: 'Snacks', icon: <Icons.BakeryDining /> },
-    { id: 'sweets', label: 'Sweets', icon: <Icons.Cake /> },
-    { id: 'drinks', label: 'Drinks', icon: <Icons.LocalCafe /> },
+    { id: 'desserts', label: 'Sweets', icon: <Icons.Cake /> },
+    { id: 'beverages', label: 'Drinks', icon: <Icons.LocalCafe /> },
     { id: 'group', label: 'Group order', icon: <Icons.Group /> },
     { id: 'other', label: 'Other', icon: <Icons.MoreHoriz /> },
   ];
@@ -635,7 +635,7 @@ const BasicInfo = ({ formData, errors, onInputChange, onCategoryChange, onDietCh
           <input 
             className={`inp ${errors.name ? 'err' : ''}`}
             type="text" 
-            placeholder="e.g. Lentil Rice Combo, Egg Sandwich…" 
+            placeholder="e.g. Denis Perch Sandwich Combo, Subway Egg & Cheese…" 
             value={formData.name}
             onChange={(e) => onInputChange('name', e.target.value)}
           />
@@ -966,19 +966,19 @@ const Allergens = ({ formData, onInputChange, onAllergenToggle }) => {
 // Preview Component
 const Preview = ({ formData, portions }) => {
   const catEmojis = {
-    tiffin: '🍱',
+    breakfast: '🍱',
     snacks: '🍜',
-    sweets: '🍮',
-    drinks: '☕',
+    desserts: '🍮',
+    beverages: '☕',
     group: '🍕',
     other: '🍽️',
   };
 
   const catBgs = {
-    tiffin: 'linear-gradient(135deg,#FFF3EC,#FFECD6)',
+    breakfast: 'linear-gradient(135deg,#FFF3EC,#FFECD6)',
     snacks: 'linear-gradient(135deg,#FFFBEC,#FFF3CC)',
-    sweets: 'linear-gradient(135deg,#FFF9EC,#FFEECC)',
-    drinks: 'linear-gradient(135deg,#FFF3EC,#FFE8D6)',
+    desserts: 'linear-gradient(135deg,#FFF9EC,#FFEECC)',
+    beverages: 'linear-gradient(135deg,#FFF3EC,#FFE8D6)',
     group: 'linear-gradient(135deg,#F3EFFE,#EDE0FF)',
     other: 'linear-gradient(135deg,#F7F7F5,#EEEEEE)',
   };
@@ -1221,10 +1221,10 @@ const PostFood = () => {
   const loadDraft = () => {
     setFormData(prev => ({
       ...prev,
-      name: 'Lentil Rice Combo',
+      name: 'Denis Perch Sandwich Combo',
       price: '8',
       location: 'East Dorm, Room 204',
-      category: 'tiffin',
+      category: 'breakfast',
       diet: 'veg',
     }));
     showToast('Draft loaded');

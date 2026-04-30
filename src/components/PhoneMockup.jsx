@@ -85,7 +85,7 @@ const PhoneMockup = () => {
                   </p>
                 </div>
                 <span className="bg-[#F07B3A]/15 text-[#F5A54A] text-[10px] px-2 py-1 rounded-full">
-                  ₹40
+                  $40
                 </span>
               </div>
 
@@ -102,7 +102,7 @@ const PhoneMockup = () => {
                   </p>
                 </div>
                 <span className="bg-[#3DBDA8]/15 text-[#3DBDA8] text-[10px] px-2 py-1 rounded-full">
-                  ₹60
+                  $60
                 </span>
               </div>
             </div>

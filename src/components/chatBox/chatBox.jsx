@@ -55,7 +55,7 @@ const ChatBox = () => {
       online: true,
       status: 'Online',
       messages: [
-        { from: 'them', text: "Hi! Your Lentil Rice Combo order came through 🍱", time: '11:30 AM' },
+        { from: 'them', text: "Hi! Your Denis Perch Sandwich Combo order came through 🍱", time: '11:30 AM' },
         { from: 'me', text: "Awesome! When will it be ready?", time: '11:32 AM' },
         { from: 'them', text: "It'll be ready in about 10 minutes. I'm in East Dorm, Room 204.", time: '11:33 AM' },
         { from: 'me', text: "Perfect, heading over now!", time: '11:40 AM' },
@@ -83,10 +83,10 @@ const ChatBox = () => {
       online: false,
       status: 'Last seen 2 days ago',
       messages: [
-        { from: 'them', text: "Hey John! We're organizing a campus pizza group order tonight.", time: '7:00 PM' },
+        { from: 'them', text: "Hey John! We're organizing a Winking Lizard Pizza Night tonight.", time: '7:00 PM' },
         { from: 'them', text: "6 people needed to split the cost. You in?", time: '7:01 PM' },
         { from: 'me', text: "How much per person?", time: '7:15 PM' },
-        { from: 'them', text: "The campus pizza group order is at 8 PM, you in?", time: '7:20 PM' },
+        { from: 'them', text: "The Winking Lizard Pizza Night is at 8 PM, you in?", time: '7:20 PM' },
       ]
     }
   };

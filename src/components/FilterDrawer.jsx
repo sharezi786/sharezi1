@@ -57,7 +57,7 @@ const FilterDrawer = memo(({ open, onClose, filters, onChange, onApply }) => {
           <div>
             <div className="flex items-center justify-between mb-2">
               <p className="text-sm font-semibold text-black">Price per seat</p>
-              <p className="text-sm font-bold text-[#F07B3A]">₹0 – ₹{filters.price}</p>
+              <p className="text-sm font-bold text-[#F07B3A]">$0 – ${filters.price}</p>
             </div>
             <input type="range" min="0" max="500" value={filters.price}
               onChange={(e) => onChange("price", Number(e.target.value))}

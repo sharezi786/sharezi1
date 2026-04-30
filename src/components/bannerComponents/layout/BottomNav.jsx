@@ -5,7 +5,7 @@ import Icons from "../../Icons";
 const navItems = [
   {
     name: "Home",
-    path: "/",
+    path: "/student-home",
     icon: Icons.Home,
   },
   {

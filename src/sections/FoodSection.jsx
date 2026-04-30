@@ -8,7 +8,7 @@ const FoodSection = () => {
       emoji: "🍕",
       gradient: "from-yellow-400 to-orange-400",
       slots: "4 slots open",
-      price: "₹200–₹400",
+      price: "$200–$400",
       status: "Join",
       statusColor: "bg-[#EAF9F7] text-[#2A9E8C]",
       rating: 4.2,
@@ -20,7 +20,7 @@ const FoodSection = () => {
       emoji: "🍔",
       gradient: "from-red-400 to-red-600",
       slots: "2 slots open",
-      price: "₹150–₹350",
+      price: "$150–$350",
       status: "2 left",
       statusColor: "bg-[#FFF3EC] text-[#F07B3A]",
       rating: 4.8,
@@ -32,7 +32,7 @@ const FoodSection = () => {
       emoji: "🥗",
       gradient: "from-green-400 to-emerald-600",
       slots: "3 slots open",
-      price: "₹120–₹280",
+      price: "$120–$280",
       status: "Join",
       statusColor: "bg-[#EAF9F7] text-[#2A9E8C]",
       rating: 4.1,
@@ -45,7 +45,7 @@ const FoodSection = () => {
       icon: "savings",
       color: "#F07B3A",
       title: "Split delivery fee",
-      description: "₹0–₹20 per person"
+      description: "$0–$20 per person"
     },
     {
       icon: "bolt",

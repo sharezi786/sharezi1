@@ -13,51 +13,51 @@ const FoodDetails = () => {
   // Mock food data - in real app this would come from API
   const foodData = {
     tiffin1: {
-      emoji:'🍱', name:'Lentil Rice Combo', price:8, category:'Tiffin',
+      emoji:'🐟', name:'Denis Perch Sandwich Combo', price:8, category:'Breakfast',
       veg:true, tags:['Popular'],
       by:'Priya N.', byInitial:'P', byColor:'#3DBDA8',
       hostel:'East Dorm', room:'Room 204',
-      portions:2, ready:'10 min', rating:4.8, reviews:32,
-      desc:'Home-cooked dal tadka with steamed rice, pickle, and papad. Made fresh every day with quality ingredients sourced from the campus co-op. No preservatives, no MSG.',
-      includes:['Steamed basmati rice (1 cup)','Dal tadka with tempering','Mixed pickle','Papad (2 pieces)','Disposable container included'],
+      portions:3, ready:'15 min', rating:4.8, reviews:32,
+      desc:'Classic Denis Restaurant-style Lake Erie perch sandwich — golden fried perch fillet on a toasted hoagie roll with tartar sauce, coleslaw slaw, and a pickle spear. Denis on E 185th St is a Cleveland landmark and this is our campus tribute..',
+      includes:['Crispy fried Lake Erie perch fillet','Toasted hoagie roll','House tartar sauce','Coleslaw slaw','Pickle spear','Napkins'],
       allergens:'Contains gluten (papad). Dairy-free.',
       bg:'linear-gradient(135deg,#FFF3EC,#FFECD6)',
       reviewList:[
-        {name:'Jake M.',rating:5,text:'Super fresh and tasty. Reminds me of home cooking!',time:'2 days ago'},
-        {name:'Sara L.',rating:5,text:'Best lentil rice on campus. Will order again.',time:'4 days ago'},
-        {name:'Raj P.',rating:4,text:'Good portions and fast pickup.',time:'1 week ago'},
+        {name:'Jake M.',rating:5,text:'Tastes just like Denis on E 185th! Can not believe someone makes this in the dorms.!',time:'2 days ago'},
+        {name:'Sara L.',rating:5,text:'Best thing I have eaten at CSU. Real Cleveland flavor.',time:'4 days ago'},
+        {name:'Raj P.',rating:4,text:'Great perch, solid portion. Will order every week.',time:'1 week ago'},
       ]
     },
     snacks1: {
-      emoji:'🍜', name:'Noodle Bowl', price:4, category:'Snacks',
+      emoji:'🥖', name:'Subway Italian BMT', price:4, category:'Snacks',
       veg:true, tags:['New'],
       by:'Karan M.', byInitial:'K', byColor:'#8B5CF6',
       hostel:'South Hall', room:'Room 112',
       portions:5, ready:'5 min', rating:4.5, reviews:18,
-      desc:'Classic two-minute noodles with sautéed veggies and house spiced. Customisable spice level — just mention in the order notes.',
-      includes:['Noodles with spiced','Sautéed onions & capsicum','Optional: extra spice','Takeaway cup'],
+      desc:'A loaded footlong Italian sub made fresh to order — stacked with pepperoni, Genoa salami, Black Forest ham, and provolone on freshly baked Italian bread. Finished with lettuce, tomatoes, red onions, banana peppers, olives, and Italian dressing. Inspired by Subway but made with better ingredients.',
+      includes:['Footlong Italian herb bread','Pepperoni, Genoa salami & Black Forest ham','Provolone cheese','Lettuce, tomatoes, red onions', 'banana peppers, olives','Italian dressing', 'Bag of chips'],
       allergens:'Contains gluten, soy.',
       bg:'linear-gradient(135deg,#FFFBEC,#FFF3CC)',
       reviewList:[
-        {name:'Amy C.',rating:5,text:'Quick and cheap. Perfect midnight snack.',time:'1 day ago'},
-        {name:'Tom R.',rating:4,text:'Good but could use more veggies.',time:'3 days ago'},
+        {name:'Amy C.',rating:5,text:'Way better than the Subway on Euclid. Fresh bread makes all the difference..',time:'1 day ago'},
+        {name:'Tom R.',rating:4,text:'Packed full of toppings. Great value for $7.',time:'3 days ago'},
       ]
     },
     group: {
-      emoji:'🍕', name:'Campus Pizza Group Order', price:15, category:'Group Order',
-      veg:false, tags:['Group'],
+      emoji:'🍗', name:'Winking Lizard Wing Night', price:15, category:'Group Order',
+      veg:true, tags:['Group'],
       by:'Sneha R.', byInitial:'S', byColor:'#EF4444',
-      hostel:'West Dorm', room:'Common Room B',
+      hostel:'WUniversity Hall', room:'Common Room B',
       portions:2, ready:'45 min', rating:null, reviews:0,
-      desc:'Split a large campus pizza order with dorm mates. Order gets placed once 6 people join. Each person picks their own toppings from the shared order form.',
-      includes:['2 slices per person','Choice of toppings','Campus delivery to dorm','Order placed at 8 PM tonight'],
+      desc:'Group wing order from Winking Lizard — Cleveland\'s legendary sports bar on E 9th St. We split a 50-piece traditional wing bucket across 6 people. Everyone picks their own sauce when they join. Winking Lizard is famous across Northeast Ohio for their wings and massive beer selection. Order deadline is 8 PM tonight.',
+      includes:['~8 wings per person (50pc bucket split 6 ways)','Each person picks 1 sauce: Buffalo, BBQ, Honey Sriracha, or Garlic Parmesan','Blue cheese or ranch dipping sauce','Celery & carrot sticks','Order placed at 8 PM sharp — no late joins'],
       allergens:'Contains gluten, dairy. Veg options available.',
       bg:'linear-gradient(135deg,#F3EFFE,#EDE0FF)',
       isGroup:true, joined:4, total:6,
       reviewList:[]
     },
     tiffin2: {
-      emoji:'🍗', name:'Chicken Curry + Rice', price:12, category:'Tiffin',
+      emoji:'🐟', name:'Denis Perch Sandwich Combo', price:12, category:'Breakfast',
       veg:false, tags:[],
       by:'Arjun T.', byInitial:'A', byColor:'#F59E0B',
       hostel:'North Hall', room:'Room 301',
@@ -73,7 +73,7 @@ const FoodDetails = () => {
       ]
     },
     sweets1: {
-      emoji:'🍮', name:'Homemade Honey Donuts', price:6, category:'Sweets',
+      emoji:'🍮', name:'Homemade Buckeye Brownies', price:6, category:'Sweets',
       veg:true, tags:['Popular'],
       by:'Riya N.', byInitial:'R', byColor:'#EC4899',
       hostel:'East Dorm', room:'Room 407',
@@ -89,13 +89,13 @@ const FoodDetails = () => {
       ]
     },
     drinks1: {
-      emoji:'☕', name:'Spiced Chai', price:3, category:'Drinks',
+      emoji:'☕', name:'Cleveland Chai Latte', price:3, category:'Drinks',
       veg:true, tags:[],
       by:'Mihir P.', byInitial:'M', byColor:'#10B981',
       hostel:'South Hall', room:'Room 205',
       portions:10, ready:'3 min', rating:4.7, reviews:27,
-      desc:'Strong spiced chai brewed with ginger, cardamom, cinnamon, and a hint of tulsi. Made with whole milk. Perfect for cold evenings.',
-      includes:['12 oz cup of spiced chai','Whole milk (can substitute oat milk — mention in notes)','Lid included'],
+      desc:'Strong Cleveland Chai Latte brewed with ginger, cardamom, cinnamon, and a hint of tulsi. Made with whole milk. Perfect for cold evenings.',
+      includes:['12 oz cup of Cleveland Chai Latte','Whole milk (can substitute oat milk — mention in notes)','Lid included'],
       allergens:'Contains dairy. Vegan option available.',
       bg:'linear-gradient(135deg,#FFF3EC,#FFE8D6)',
       reviewList:[
@@ -105,12 +105,12 @@ const FoodDetails = () => {
       ]
     },
     snacks2: {
-      emoji:'🥪', name:'Egg Sandwich', price:7, category:'Snacks',
+      emoji:'🥪', name:'Subway Egg & Cheese', price:7, category:'Snacks',
       veg:false, tags:[],
       by:'Rohan K.', byInitial:'R', byColor:'#3DBDA8',
       hostel:'Central Dorm', room:'Room 103',
       portions:4, ready:'8 min', rating:4.6, reviews:21,
-      desc:'Double egg sandwich on toasted sourdough with cheddar cheese, crisp lettuce, and mayo. Add hot sauce on request.',
+      desc:'Double Subway Egg & Cheese on toasted sourdough with cheddar cheese, crisp lettuce, and mayo. Add hot sauce on request.',
       includes:['2 fried eggs','Cheddar cheese slice','Lettuce & tomato','Toasted sourdough bread','Mayo & optional hot sauce'],
       allergens:'Contains eggs, gluten, dairy.',
       bg:'linear-gradient(135deg,#F0FDF4,#D1FAE5)',
@@ -120,10 +120,10 @@ const FoodDetails = () => {
       ]
     },
     tiffin3: {
-      emoji:'🫓', name:'Cottage Cheese Sabji + Flatbread', price:9, category:'Tiffin',
+      emoji:'🫓', name:'Winking Lizard Burger', price:9, category:'Tiffin',
       veg:true, tags:[],
       by:'Sneha R.', byInitial:'S', byColor:'#EF4444',
-      hostel:'West Dorm', room:'Room 512',
+      hostel:'University Hall', room:'Room 512',
       portions:2, ready:'20 min', rating:4.7, reviews:15,
       desc:'Cottage Cheese bhurji — scrambled cottage cheese with onions, tomatoes, and spices — served with 3 soft whole wheat rotis.',
       includes:['Cottage Cheese bhurji (150g)','3 whole wheat rotis','Green chutney','Disposable container'],
@@ -274,9 +274,9 @@ const FoodDetails = () => {
           {/* Badges */}
           <div className="absolute top-4 left-4 flex gap-2">
             <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-              selectedFood.veg ? 'bg-[#F0FDF4] text-[#15803D]' : 'bg-[#FEF2F2] text-[#B91C1C]'
+              selectedFood.veg ? 'bg-[#FEE2E2] text-[#B91C1C]' : 'bg-[#D1FAE5] text-[#15803D]'
             }`}>
-              {selectedFood.veg ? '● Veg' : '● Non-veg'}
+              {selectedFood.veg ? '● Non-veg' : '● veg'} 
             </span>
             {selectedFood.tags.map((tag, index) => (
               <span 

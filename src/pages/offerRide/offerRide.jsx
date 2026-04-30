@@ -178,7 +178,7 @@ const OfferRide = () => {
                 </div>
                 {/* Price */}
                 <div className="md:col-span-1">
-                  <label className="block text-sm font-semibold text-gray-400 mb-2">Price per Seat (₹)</label>
+                  <label className="block text-sm font-semibold text-gray-400 mb-2">Price per Seat ($)</label>
                   <div className="relative">
                     <div className="absolute left-3 top-0 bottom-0 flex items-center text-gray-500">
                       <span className="material-symbols-rounded" style={{ fontSize: '20px' }}>currency_rupee</span>
@@ -197,7 +197,7 @@ const OfferRide = () => {
               </div>
               <div className="mt-3 bg-[#EAF9F7] rounded-xl p-3 flex items-center gap-2">
                 <span className="material-symbols-rounded" style={{ fontSize: '18px', color: '#3DBDA8' }}>savings</span>
-                <p className="lbl_text text-[#111]/55">You could earn <span className="font-bold text-[#2A9E8C]">₹{seats * (Number(price) || 0)}</span> if all seats are taken</p>
+                <p className="lbl_text text-[#111]/55">You could earn <span className="font-bold text-[#2A9E8C]">${seats * (Number(price) || 0)}</span> if all seats are taken</p>
               </div>
             </div>
 

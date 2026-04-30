@@ -264,7 +264,7 @@ const FindRide = () => {
                     <p className="text-xs text-black/40 mt-0.5">{ride.vehicle}</p>
                   </div>
                   <div className="text-right shrink-0">
-                    <p className="font-bold text-base text-[#F07B3A]">₹{ride.price}</p>
+                    <p className="font-bold text-base text-[#F07B3A]">${ride.price}</p>
                     <p className="text-xs text-black/35">per seat</p>
                   </div>
                 </div>
@@ -399,7 +399,7 @@ const FindRide = () => {
                     <p className="text-xs font-bold text-black">{ride.name}</p>
                     <p className="text-xs text-black/40 truncate">{ride.from} → {ride.to.split(' ')[0]}</p>
                   </div>
-                  <p className="text-xs font-bold text-[#F07B3A] shrink-0">₹{ride.price}</p>
+                  <p className="text-xs font-bold text-[#F07B3A] shrink-0">${ride.price}</p>
                 </div>
               ))}
             </div>
@@ -426,7 +426,7 @@ const FindRide = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-sm font-semibold text-black">Price per seat</p>
-                  <p className="text-sm font-bold text-[#F07B3A]">₹0 – ₹{priceRange}</p>
+                  <p className="text-sm font-bold text-[#F07B3A]">$0 – ${priceRange}</p>
                 </div>
                 <input
                   type="range"

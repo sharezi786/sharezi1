@@ -142,7 +142,7 @@ const DriverInfo = () => {
         <p className="text-[#111]/45 text-xs">Honda Activa · MH02 AZ 4521</p>
       </div>
       <div className="text-right">
-        <p className="text-[#F07B3A] font-bold text-sm">₹55</p>
+        <p className="text-[#F07B3A] font-bold text-sm">$55</p>
         <p className="text-[#111]/35 text-[10px]">per seat</p>
       </div>
     </div>

@@ -6,10 +6,12 @@ import QuickTile from '../components/bannerComponents/home/QuickTile';
 import ActivityCard from '../components/bannerComponents/home/ActivityCard';
 import BottomNav from '../components/bannerComponents/layout/BottomNav';
 import './Home.css';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [greeting, setGreeting] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const hr = new Date().getHours();
@@ -77,21 +79,21 @@ const Home = () => {
     {
       title: "Ride with Riya S.",
       subtitle: "IITB → Andheri Stn · Yesterday",
-      amount: "₹40",
+      amount: "$40",
       icon: "directions_car",
       status: "Completed"
     },
     {
       title: "Domino's group order",
       subtitle: "Split with 3 others · 2 days ago",
-      amount: "₹180",
+      amount: "$180",
       icon: "lunch_dining",
       status: "Delivered"
     },
     {
       title: "Ride with Mihir P.",
       subtitle: "Powai → BKC · 3 days ago",
-      amount: "₹60",
+      amount: "$60",
       icon: "directions_car",
       status: "Completed"
     }
@@ -117,7 +119,7 @@ const Home = () => {
           <div className="u5">
             <div className="flex items-center justify-between mb-3">
               <p className="text-xs font-bold text-[#111]/35 tracking-widest uppercase">Recent Activity</p>
-              <button className="text-xs text-[#3DBDA8] font-semibold hover:underline">See all</button>
+              <button className="text-xs text-[#3DBDA8] font-semibold hover:underline" onClick={() => navigate('/ride-history')}>See all</button>
             </div>
 
             <div className="flex flex-col gap-2.5">
